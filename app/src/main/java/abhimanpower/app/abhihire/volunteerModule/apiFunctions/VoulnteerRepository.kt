@@ -1,7 +1,9 @@
 package abhimanpower.app.abhihire.volunteerModule.apiFunctions
 
 import abhimanpower.app.abhihire.loginModule.apiFunctions.LoginResponse
+import abhimanpower.app.abhihire.volunteerModule.modalClass.AddContractorResponse
 import abhimanpower.app.abhihire.volunteerModule.modalClass.AddWorkerResponse
+import abhimanpower.app.abhihire.volunteerModule.modalClass.ContractorData
 import abhimanpower.app.abhihire.volunteerModule.modalClass.GetMonthlyStatsResponse
 import abhimanpower.app.abhihire.volunteerModule.modalClass.GetOverallStatsResponse
 import abhimanpower.app.abhihire.volunteerModule.modalClass.WorkerData
@@ -51,6 +53,18 @@ class VoulnteerRepository @Inject constructor(
         } catch (_: Exception) {
         }
         return addWorkerResponse
+    }
+
+    private var addContractorResponse = AddContractorResponse()
+
+    suspend fun addContractor(contractorData: ContractorData,photo: MultipartBody.Part): AddContractorResponse {
+        try {
+            withContext(Dispatchers.IO) {
+                addContractorResponse = apiHelper.addContractor(contractorData,photo)
+            }
+        } catch (_: Exception) {
+        }
+        return addContractorResponse
     }
 
 }

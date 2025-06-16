@@ -1,3 +1,71 @@
 <resources>
     <string name="app_name">AbhiHire</string>
+
+    <string name="state_telangana">Telangana</string>
+    <string name="state_andhra_pradesh">Andhra Pradesh</string>
+
+
+    <!-- Telangana Districts -->
+    <string name="district_adilabad">Adilabad</string>
+    <string name="district_bhadradri_kothagudem">Bhadradri Kothagudem</string>
+    <string name="district_hanamkonda">Hanamkonda</string>
+    <string name="district_hyderabad">Hyderabad</string>
+    <string name="district_jagtial">Jagtial</string>
+    <string name="district_jangaon">Jangaon</string>
+    <string name="district_jayashankar_bhupalpally">Jayashankar Bhupalpally</string>
+    <string name="district_jogulamba_gadwal">Jogulamba Gadwal</string>
+    <string name="district_kamareddy">Kamareddy</string>
+    <string name="district_karimnagar">Karimnagar</string>
+    <string name="district_khammam">Khammam</string>
+    <string name="district_kumuram_bheem">Kumuram Bheem</string>
+    <string name="district_mahabubabad">Mahabubabad</string>
+    <string name="district_mahbubnagar">Mahbubnagar</string>
+    <string name="district_mancherial">Mancherial</string>
+    <string name="district_medak">Medak</string>
+    <string name="district_medchal_malkajgiri">Medchal-Malkajgiri</string>
+    <string name="district_mulugu">Mulugu</string>
+    <string name="district_nagarkurnool">Nagarkurnool</string>
+    <string name="district_nalgonda">Nalgonda</string>
+    <string name="district_narayanpet">Narayanpet</string>
+    <string name="district_nirmal">Nirmal</string>
+    <string name="district_nizamabad">Nizamabad</string>
+    <string name="district_peddapalli">Peddapalli</string>
+    <string name="district_rajanna_sircilla">Rajanna Sircilla</string>
+    <string name="district_ranga_reddy">Ranga Reddy</string>
+    <string name="district_sangareddy">Sangareddy</string>
+    <string name="district_siddipet">Siddipet</string>
+    <string name="district_suryapet">Suryapet</string>
+    <string name="district_vikarabad">Vikarabad</string>
+    <string name="district_wanaparthy">Wanaparthy</string>
+    <string name="district_warangal">Warangal</string>
+    <string name="district_yadadri_bhuvanagiri">Yadadri Bhuvanagiri</string>
+
+    <!-- Andhra Pradesh Districts -->
+    <string name="district_alluri_sitharama_raju">Alluri Sitharama Raju</string>
+    <string name="district_anakapalli">Anakapalli</string>
+    <string name="district_ananthapuramu">Ananthapuramu</string>
+    <string name="district_annamayya">Annamayya</string>
+    <string name="district_bapatla">Bapatla</string>
+    <string name="district_chittoor">Chittoor</string>
+    <string name="district_dr_br_ambedkar_konaseema">Dr. B. R. Ambedkar Konaseema</string>
+    <string name="district_east_godavari">East Godavari</string>
+    <string name="district_eluru">Eluru</string>
+    <string name="district_guntur">Guntur</string>
+    <string name="district_kakinada">Kakinada</string>
+    <string name="district_krishna">Krishna</string>
+    <string name="district_kurnool">Kurnool</string>
+    <string name="district_nandyal">Nandyal</string>
+    <string name="district_nellore">Sri Potti Sriramulu Nellore</string>
+    <string name="district_ntr">NTR</string>
+    <string name="district_palnadu">Palnadu</string>
+    <string name="district_parvathipuram_manyam">Parvathipuram Manyam</string>
+    <string name="district_prakasam">Prakasam</string>
+    <string name="district_srikakulam">Srikakulam</string>
+    <string name="district_sri_sathya_sai">Sri Sathya Sai</string>
+    <string name="district_tirupati">Tirupati</string>
+    <string name="district_visakhapatnam">Visakhapatnam</string>
+    <string name="district_vizianagaram">Vizianagaram</string>
+    <string name="district_west_godavari">West Godavari</string>
+    <string name="district_ysr_kadapa">YSR Kadapa</string>
+
 </resources>

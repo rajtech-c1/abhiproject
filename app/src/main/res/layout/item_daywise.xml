@@ -48,7 +48,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dp_6"
-                android:text="Volunteers Added"
+                android:text="Total Added"
                 android:textAlignment="center"
                 android:textSize="@dimen/sp_10"
                 android:textColor="@color/black"

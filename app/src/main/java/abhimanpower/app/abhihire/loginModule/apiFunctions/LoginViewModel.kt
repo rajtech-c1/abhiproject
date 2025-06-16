@@ -1,5 +1,7 @@
 package abhimanpower.app.abhihire.loginModule.apiFunctions
 
+import abhimanpower.app.abhihire.contractorModule.modalClass.ContractorLoginResponse
+import abhimanpower.app.abhihire.loginModule.modalClass.WorkerLoginResponse
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,5 +29,37 @@ class LoginViewModel @Inject constructor(
 
     fun getLoginResponse(): LiveData<LoginResponse> {
         return loginResponse
+    }
+
+    private var workerLoginResponse = MutableLiveData<WorkerLoginResponse>()
+
+    fun workerLogin(mobileNo: String) {
+        viewModelScope.launch {
+            workerLoginResponse.postValue(loginRepository.workerLogin(mobileNo))
+        }
+    }
+
+    fun resetWorkerLoginResponse() {
+        workerLoginResponse = MutableLiveData<WorkerLoginResponse>()
+    }
+
+    fun getWorkerLoginResponse(): LiveData<WorkerLoginResponse> {
+        return workerLoginResponse
+    }
+
+    private var contractorLoginResponse = MutableLiveData<ContractorLoginResponse>()
+
+    fun contractorLogin(mobileNo: String) {
+        viewModelScope.launch {
+            contractorLoginResponse.postValue(loginRepository.contractorLogin(mobileNo))
+        }
+    }
+
+    fun resetContractorLoginResponse() {
+        contractorLoginResponse = MutableLiveData<ContractorLoginResponse>()
+    }
+
+    fun getContractorLoginResponse(): LiveData<ContractorLoginResponse> {
+        return contractorLoginResponse
     }
 }

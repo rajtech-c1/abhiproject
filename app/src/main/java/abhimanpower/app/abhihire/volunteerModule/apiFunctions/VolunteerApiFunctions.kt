@@ -1,6 +1,8 @@
 package abhimanpower.app.abhihire.volunteerModule.apiFunctions
 
+import abhimanpower.app.abhihire.volunteerModule.modalClass.AddContractorResponse
 import abhimanpower.app.abhihire.volunteerModule.modalClass.AddWorkerResponse
+import abhimanpower.app.abhihire.volunteerModule.modalClass.ContractorData
 import abhimanpower.app.abhihire.volunteerModule.modalClass.GetMonthlyStatsResponse
 import abhimanpower.app.abhihire.volunteerModule.modalClass.GetOverallStatsResponse
 import abhimanpower.app.abhihire.volunteerModule.modalClass.WorkerData
@@ -17,6 +19,8 @@ class VolunteerApiFunctions(
     private val onAddWorkerResponse: (addWorker: AddWorkerResponse) -> Unit,
     private val onGetOverAllStatsResponse: (getOverallStatsResponse: GetOverallStatsResponse) -> Unit,
     private val onGetMonthlyStatsResponse: (getMonthlyStatsResponse: GetMonthlyStatsResponse) -> Unit = {},
+    private val onAddContractorResponse: (addContractorResponse: AddContractorResponse) -> Unit= {},
+
     ) {
 
     private var mContext: Context
@@ -80,6 +84,20 @@ class VolunteerApiFunctions(
 //            } else {
 //                UtilFunctions.showToast(mContext, "Server Error")
 //            }
+        }
+    }
+
+
+    fun postAddContractor(contractorData: ContractorData, photo: MultipartBody.Part) {
+        mvolunteerViewModule.resetAddContractorResponse()
+        mvolunteerViewModule.addContractor(contractorData, photo)
+
+        addContractorObserver()
+    }
+
+    private fun addContractorObserver() {
+        mvolunteerViewModule.getAddContractorResponse().observe(mLifecycleOwner) {
+            onAddContractorResponse.invoke(it)
         }
     }
 

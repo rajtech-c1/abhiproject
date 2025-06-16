@@ -1,6 +1,8 @@
 package abhimanpower.app.abhihire.volunteerModule.apiFunctions
 
+import abhimanpower.app.abhihire.volunteerModule.modalClass.AddContractorResponse
 import abhimanpower.app.abhihire.volunteerModule.modalClass.AddWorkerResponse
+import abhimanpower.app.abhihire.volunteerModule.modalClass.ContractorData
 import abhimanpower.app.abhihire.volunteerModule.modalClass.GetMonthlyStatsResponse
 import abhimanpower.app.abhihire.volunteerModule.modalClass.GetOverallStatsResponse
 import abhimanpower.app.abhihire.volunteerModule.modalClass.WorkerData
@@ -35,11 +37,16 @@ class VolunteerViewModule @Inject constructor(
         return getOverallStatsResponse
     }
 
-    private var getMonthlyStatsResponse =  MutableLiveData<GetMonthlyStatsResponse>()
+    private var getMonthlyStatsResponse = MutableLiveData<GetMonthlyStatsResponse>()
 
-    fun getMonthlyStats(month: String,volunteerId: Int) {
+    fun getMonthlyStats(month: String, volunteerId: Int) {
         viewModelScope.launch {
-            getMonthlyStatsResponse.postValue(volunteerRepository.getMonthlyStats(month, volunteerId))
+            getMonthlyStatsResponse.postValue(
+                volunteerRepository.getMonthlyStats(
+                    month,
+                    volunteerId
+                )
+            )
         }
     }
 
@@ -65,5 +72,26 @@ class VolunteerViewModule @Inject constructor(
 
     fun getAddWorkerResponse(): LiveData<AddWorkerResponse> {
         return addWorkerResponse
+    }
+
+    private var addContractorResponse = MutableLiveData<AddContractorResponse>()
+
+    fun addContractor(contractorData: ContractorData, photo: MultipartBody.Part) {
+        viewModelScope.launch {
+            addContractorResponse.postValue(
+                volunteerRepository.addContractor(
+                    contractorData,
+                    photo
+                )
+            )
+        }
+    }
+
+    fun resetAddContractorResponse() {
+        addContractorResponse = MutableLiveData<AddContractorResponse>()
+    }
+
+    fun getAddContractorResponse(): LiveData<AddContractorResponse> {
+        return addContractorResponse
     }
 }

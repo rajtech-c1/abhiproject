@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -22,6 +21,39 @@
         android:theme="@style/Theme.AbhiHire"
         tools:targetApi="31">
         <activity
+            android:name=".paymentModule.PaymentPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".contractorModule.RegisterContractorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".contractorModule.MyWorksActivity"
+            android:exported="false" />
+        <activity
+            android:name=".contractorModule.AddWorkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".contractorModule.ContractorHomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".loginModule.RoleSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".volunteerModule.AddContractorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".workerModule.RegisterWorkerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".workerModule.EditWorkerProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".workerModule.WorkerProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".workerModule.WorkerDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivityOTP"
             android:exported="false" />
         <activity
@@ -29,7 +61,7 @@
             android:exported="false" />
         <activity
             android:name=".workerModule.WorkerHomeActivity"
-            android:exported="false" />
+            android:exported="true" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -41,29 +73,24 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-
         <activity
             android:name=".volunteerModule.AddWorkerActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".volunteerModule.VolunteerHomeActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".loginModule.VolunteerLoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
     </application>
 
 </manifest>

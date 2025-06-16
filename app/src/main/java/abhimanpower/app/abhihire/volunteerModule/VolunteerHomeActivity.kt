@@ -1,6 +1,7 @@
 package abhimanpower.app.abhihire.volunteerModule
 
 import abhimanpower.app.abhihire.databinding.ActivityVolunteerHomeBinding
+import abhimanpower.app.abhihire.loginModule.LogoutDialog
 import abhimanpower.app.abhihire.volunteerModule.adapters.DayInfoAdapter
 import abhimanpower.app.abhihire.volunteerModule.apiFunctions.VolunteerApiFunctions
 import abhimanpower.app.abhihire.volunteerModule.apiFunctions.VolunteerViewModule
@@ -9,7 +10,9 @@ import abhimanpower.app.abhihire.volunteerModule.modalClass.GetMonthlyStatsRespo
 import abhimanpower.app.abhihire.volunteerModule.modalClass.GetOverallStatsResponse
 import abhimanpower.app.abhihire.volunteerModule.modalClass.MonthData
 import abhimanpower.app.abhihire.volunteerModule.modalClass.VolunteerData
+import abhimanpower.app.abhihire.volunteerModule.uiFuntion.LastRowMarginDecoration
 import abhimanpower.app.abhihire.volunteerModule.uiFuntion.VolunteerHomeUI
+import abhimanpower.app.abhihire.zCommonFunctions.AppData
 import abhimanpower.app.abhihire.zCommonFunctions.CallIntent
 import abhimanpower.app.abhihire.zCommonFunctions.UtilFunctions
 import android.os.Bundle
@@ -27,6 +30,7 @@ class VolunteerHomeActivity : AppCompatActivity() {
     private lateinit var volunteerApiFunctions: VolunteerApiFunctions
     private lateinit var volunteerViewModule: VolunteerViewModule
 
+    private lateinit var logoutDialog: LogoutDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +49,8 @@ class VolunteerHomeActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        logoutDialog = LogoutDialog(layoutInflater, this, ::onLogoutClicked)
+
         volunteerHomeUI = VolunteerHomeUI(this, binding, ::onMonthSelected)
         volunteerApiFunctions =
             VolunteerApiFunctions(
@@ -59,9 +65,23 @@ class VolunteerHomeActivity : AppCompatActivity() {
         fetchOverallVolunteerStats()
     }
 
+    private fun onLogoutClicked() {
+        AppData.putUserLoginStatus(this, false)
+        CallIntent.gotoLoginActivity(this, true, this)
+    }
+
+
     private fun onClickListeners() {
         binding.btAddWorker.setOnClickListener {
             CallIntent.gotoAddWorkerActivity(this, false, this)
+        }
+
+        binding.btAddContractor.setOnClickListener {
+            CallIntent.gotoAddContractorActivity(this, false, this)
+        }
+
+        binding.btLogout.setOnClickListener {
+            logoutDialog.openLogoutDialog()
         }
     }
 
@@ -86,6 +106,7 @@ class VolunteerHomeActivity : AppCompatActivity() {
     private fun onGetMonthlyStatsResponse(response: GetMonthlyStatsResponse) {
 
         if (response.status == 200) {
+            volunteerHomeUI.setTotalMonthCount(response.totalCount.toString())
             initDayWiseAdapter(response.daysList)
         } else {
             UtilFunctions.showToast(this, "Server Error")
@@ -100,6 +121,8 @@ class VolunteerHomeActivity : AppCompatActivity() {
 
         binding.volunteerRecyclerView.apply {
             layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+            addItemDecoration(LastRowMarginDecoration(3, 16))
+
             adapter = dayInfoAdapter
         }
     }
