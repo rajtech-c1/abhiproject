@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="blue">#0123FB</color>
+
+    <color name="red">#E10000</color>
+
+    <color name="text_caption">#CCCCCC</color>
+
     <color name="white">#FFFFFFFF</color>
 
     <color name="black_to_white">#000000</color>
 
     <color name="button_color">#cd362c</color>
 
-    #cd362c
+    <color name="color2">#dc645c</color>
+
+    <color name="color3">#f2f9ff</color>
+
+
+    <color name="bg_c1">#f4f4f4</color>
+
+    <color name="cell_left_bg">#c0c3c4</color>
+
+
+
+    <color name="cell_border">#adb0b0</color>
+
+
+
 </resources>

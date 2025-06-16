@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/ivProfile"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
+                android:layout_width="@dimen/dp_42"
+                android:layout_height="@dimen/dp_42"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="6dp"
                 android:src="@drawable/abhihire_logo"
@@ -39,7 +39,6 @@
                 android:text="Welcome"
                 android:textColor="#8F8C8C"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/tvCurrentDate"
                 app:layout_constraintStart_toEndOf="@id/ivProfile"
                 app:layout_constraintTop_toTopOf="@+id/ivProfile" />
 
@@ -60,11 +59,11 @@
                 android:id="@+id/btLogout"
                 android:layout_width="@dimen/dp_28"
                 android:layout_height="@dimen/dp_28"
-                android:src="@drawable/bt_logout"
                 android:layout_marginEnd="@dimen/dp_12"
+                android:src="@drawable/bt_logout"
+                app:layout_constraintBottom_toBottomOf="@id/tvVolunteerName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/tvCurrentDate"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -73,138 +72,408 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_12"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appBarLt"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appBarLt">
 
-            <TextView
-                android:id="@+id/titleTotalVolunteers"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ltVolunteerStats"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Total Volunteers Added"
-                android:textSize="18sp"
-                android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent">
 
-            <!-- Total Volunteers Count -->
-            <TextView
-                android:id="@+id/tvTotalVolunteers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/holo_blue_dark"
-                app:layout_constraintTop_toBottomOf="@id/titleTotalVolunteers"
-                app:layout_constraintStart_toStartOf="@id/titleTotalVolunteers"
-                app:layout_constraintEnd_toEndOf="@id/titleTotalVolunteers"
-                android:layout_marginTop="4dp" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ltWorkersStats"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/ltContractorsStats">
 
-            <!-- Added Today -->
-            <TextView
-                android:id="@+id/titleToday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Added Today"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tvTotalVolunteers"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/titleWeek"
-                android:layout_marginTop="16dp" />
+                    <TextView
+                        android:id="@+id/titleTotalWorkers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Workers"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvAddedToday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="20sp"
-                android:textColor="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@id/titleToday"
-                app:layout_constraintStart_toStartOf="@id/titleToday"
-                app:layout_constraintEnd_toEndOf="@id/titleToday"
-                android:layout_marginTop="4dp" />
+                    <TextView
+                        android:id="@+id/tvTotalWorkers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="0"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@id/titleTotalWorkers"
+                        app:layout_constraintStart_toStartOf="@id/titleTotalWorkers"
+                        app:layout_constraintTop_toBottomOf="@id/titleTotalWorkers" />
 
-            <!-- Added This Week -->
-            <TextView
-                android:id="@+id/titleWeek"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Added This Week"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="@id/titleToday"
-                app:layout_constraintStart_toEndOf="@id/titleToday"
-                app:layout_constraintEnd_toEndOf="parent" />
+                    <View
+                        android:id="@+id/divider1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/text_caption"
+                        android:layout_marginHorizontal="@dimen/dp_6"
+                        app:layout_constraintTop_toBottomOf="@id/tvTotalWorkers"/>
 
-            <TextView
-                android:id="@+id/tvAddedThisWeek"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="20sp"
-                android:textColor="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@id/titleWeek"
-                app:layout_constraintEnd_toEndOf="@id/titleWeek"
-                app:layout_constraintStart_toStartOf="@id/titleWeek"
-                android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:id="@+id/ltWorkerWeekDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:layout_marginHorizontal="@dimen/dp_6"
+                        app:layout_constraintTop_toBottomOf="@id/divider1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="This Week"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/dp_1"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ltWorkerTodayDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:layout_marginHorizontal="@dimen/dp_6"
+                        app:layout_constraintTop_toBottomOf="@id/ltWorkerWeekDetails"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Added Today"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/dp_1"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50"/>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ltContractorsStats"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    app:layout_constraintStart_toEndOf="@id/ltWorkersStats"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <TextView
+                        android:id="@+id/titleTotalContractors"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Contractors"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTotalContractors"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="0"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@id/titleTotalContractors"
+                        app:layout_constraintStart_toStartOf="@id/titleTotalContractors"
+                        app:layout_constraintTop_toBottomOf="@id/titleTotalContractors" />
+
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/text_caption"
+                        android:layout_marginHorizontal="@dimen/dp_6"
+                        app:layout_constraintTop_toBottomOf="@id/tvTotalContractors"/>
+
+                    <LinearLayout
+                        android:id="@+id/ltContractorWeekDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:layout_marginHorizontal="@dimen/dp_6"
+                        app:layout_constraintTop_toBottomOf="@id/divider2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="This Week"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/dp_1"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ltContractorTodayDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:layout_marginHorizontal="@dimen/dp_6"
+                        app:layout_constraintTop_toBottomOf="@id/ltContractorWeekDetails"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Added Today"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/dp_1"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50"/>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/titleTotalVolunteers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Workers Added"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Total Volunteers Count -->
+                <TextView
+                    android:id="@+id/tvTotalVolunteers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="0"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/titleTotalVolunteers"
+                    app:layout_constraintStart_toStartOf="@id/titleTotalVolunteers"
+                    app:layout_constraintTop_toBottomOf="@id/titleTotalVolunteers" />
+
+                <!-- Added Today -->
+                <TextView
+                    android:id="@+id/titleToday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Added Today"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/titleWeek"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTotalVolunteers" />
+
+                <TextView
+                    android:id="@+id/tvAddedToday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="0"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@id/titleToday"
+                    app:layout_constraintStart_toStartOf="@id/titleToday"
+                    app:layout_constraintTop_toBottomOf="@id/titleToday" />
+
+                <!-- Added This Week -->
+                <TextView
+                    android:id="@+id/titleWeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Added This Week"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/titleToday"
+                    app:layout_constraintTop_toTopOf="@id/titleToday" />
+
+                <TextView
+                    android:id="@+id/tvAddedThisWeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="0"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@id/titleWeek"
+                    app:layout_constraintStart_toStartOf="@id/titleWeek"
+                    app:layout_constraintTop_toBottomOf="@id/titleWeek" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Month Picker -->
             <Spinner
                 android:id="@+id/spSelectMonth"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
-                android:layout_marginTop="6dp"
                 android:layout_marginHorizontal="@dimen/dp_12"
+                android:layout_marginTop="6dp"
                 android:background="@drawable/bg_spinner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvAddedToday"/>
+                app:layout_constraintTop_toBottomOf="@id/ltVolunteerStats" />
+
+            <TextView
+                android:id="@+id/totalMonthCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_4"
+                android:text="Total count added in November"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/spSelectMonth"
+                app:layout_constraintTop_toBottomOf="@id/spSelectMonth" />
+
+
+            <TextView
+                android:id="@+id/totalMonthCountValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="150"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/totalMonthCount"
+                app:layout_constraintEnd_toEndOf="@id/spSelectMonth"
+                app:layout_constraintTop_toTopOf="@id/totalMonthCount" />
+
+            <TextView
+                android:id="@+id/showingTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_2"
+                android:text="Day wise stats in this month"
+                android:textColor="@color/text_caption"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/totalMonthCount"
+                app:layout_constraintTop_toBottomOf="@id/totalMonthCount" />
 
             <!-- RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/volunteerRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="16dp"
-                android:paddingBottom="@dimen/dp_6"
                 android:layout_marginHorizontal="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginBottom="@dimen/dp_12"
-                app:layout_constraintTop_toBottomOf="@id/spSelectMonth"
-                app:layout_constraintStart_toStartOf="parent"
+                android:paddingBottom="@dimen/dp_6"
+                app:layout_constraintBottom_toTopOf="@id/ltAddButtons"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/btAddWorker" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/showingTitle" />
 
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/rvProgressList"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="@dimen/dp_12"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"/>-->
+            <!--            <androidx.recyclerview.widget.RecyclerView-->
+            <!--                android:id="@+id/rvProgressList"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginHorizontal="@dimen/dp_12"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"/>-->
 
-            <TextView
-                android:id="@+id/btAddWorker"
+
+            <LinearLayout
+                android:id="@+id/ltAddButtons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/dp_12"
                 android:layout_marginTop="24dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/button_one_login"
-                android:paddingVertical="@dimen/dp_12"
-                android:text="Add New Worker"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_20"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent">
 
+                <TextView
+                    android:id="@+id/btAddWorker"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_12"
+                    android:layout_marginBottom="16dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_add_1"
+                    android:paddingVertical="@dimen/dp_12"
+                    android:text="Add Worker"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_20"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btAddContractor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    android:layout_marginBottom="16dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_add_2"
+                    android:paddingVertical="@dimen/dp_12"
+                    android:text="Add Contractor"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_20"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

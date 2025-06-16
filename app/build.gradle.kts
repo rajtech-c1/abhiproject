@@ -90,4 +90,7 @@ dependencies {
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
+    implementation("io.coil-kt:coil:2.6.0") // Check for the latest version on Coil's GitHub
+
+
 }

@@ -23,6 +23,15 @@ class VolunteerHomeUI(
         initMonthsSpinner()
     }
 
+    fun setTotalMonthCount(count:String)
+    {
+        mBinding.totalMonthCountValue.text=count
+
+        val selectedMonthPosition = mBinding.spSelectMonth.selectedItemPosition
+        val monthName = getLastSixMonths()[selectedMonthPosition].monthName
+
+        mBinding.totalMonthCount.text="Total count added in ${monthName}"
+    }
 
     private var selectedMonth = MonthData()
 
@@ -60,9 +69,11 @@ class VolunteerHomeUI(
                     // Handle case when nothing is selected (optional)
                 }
             }
+
+        mBinding.spSelectMonth.setSelection(1)
     }
 
-    fun getLastSixMonths(): List<MonthData> {
+    private fun getLastSixMonths(): List<MonthData> {
         val monthList = mutableListOf<MonthData>()
         val currentDate = java.util.Calendar.getInstance()
 

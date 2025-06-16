@@ -3,7 +3,17 @@
     <style name="Base.Theme.AbhiHire" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@android:color/white</item>
+
+        <!-- Optional: to ensure icons are dark (for visibility on white background) -->
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.AbhiHire" parent="Base.Theme.AbhiHire" />
+
+    <!-- res/values/styles.xml -->
+    <style name="AdvancedProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateDrawable">@drawable/animated_circle</item>
+    </style>
+
 </resources>
