@@ -234,7 +234,7 @@
                         <ImageView
                             android:layout_width="@dimen/dp_24"
                             android:layout_height="@dimen/dp_24"
-                            android:src="@drawable/iv_call"
+                            android:src="@drawable/ic_dob"
                             app:layout_constraintBottom_toBottomOf="@id/tvDOB"
                             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -270,7 +270,7 @@
                         <ImageView
                             android:layout_width="@dimen/dp_24"
                             android:layout_height="@dimen/dp_24"
-                            android:src="@drawable/iv_call"
+                            android:src="@drawable/iv_gender"
                             app:layout_constraintBottom_toBottomOf="@id/tvGender"
                             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -306,7 +306,7 @@
                         <ImageView
                             android:layout_width="@dimen/dp_24"
                             android:layout_height="@dimen/dp_24"
-                            android:src="@drawable/iv_call"
+                            android:src="@drawable/iv_street"
                             app:layout_constraintBottom_toBottomOf="@id/tvStreet"
                             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -343,7 +343,7 @@
                         <ImageView
                             android:layout_width="@dimen/dp_24"
                             android:layout_height="@dimen/dp_24"
-                            android:src="@drawable/iv_call"
+                            android:src="@drawable/iv_area"
                             app:layout_constraintBottom_toBottomOf="@id/tvArea"
                             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -379,7 +379,7 @@
                         <ImageView
                             android:layout_width="@dimen/dp_24"
                             android:layout_height="@dimen/dp_24"
-                            android:src="@drawable/iv_call"
+                            android:src="@drawable/iv_pincode"
                             app:layout_constraintBottom_toBottomOf="@id/tvPincode"
                             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -416,7 +416,7 @@
                         <ImageView
                             android:layout_width="@dimen/dp_24"
                             android:layout_height="@dimen/dp_24"
-                            android:src="@drawable/iv_call"
+                            android:src="@drawable/iv_state"
                             app:layout_constraintBottom_toBottomOf="@id/tvState"
                             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -453,7 +453,7 @@
                         <ImageView
                             android:layout_width="@dimen/dp_24"
                             android:layout_height="@dimen/dp_24"
-                            android:src="@drawable/iv_call"
+                            android:src="@drawable/iv_work_category"
                             app:layout_constraintBottom_toBottomOf="@id/tvWorkCategory"
                             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -490,7 +490,7 @@
                         <ImageView
                             android:layout_width="@dimen/dp_24"
                             android:layout_height="@dimen/dp_24"
-                            android:src="@drawable/iv_call"
+                            android:src="@drawable/iv_work_experience"
                             app:layout_constraintBottom_toBottomOf="@id/tvWorkExperience"
                             app:layout_constraintEnd_toEndOf="parent" />
 
