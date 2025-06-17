@@ -2,6 +2,7 @@ package abhimanpower.app.abhihire.loginModule.modalClass
 
 import abhimanpower.app.abhihire.contractorModule.modalClass.ContractorAccountData
 import abhimanpower.app.abhihire.volunteerModule.modalClass.VolunteerAccountData
+import abhimanpower.app.abhihire.workerModule.modalClass.PlanData
 import abhimanpower.app.abhihire.workerModule.modalClass.WorkerAccountData
 
 object LoginCredentials {
@@ -16,4 +17,6 @@ object LoginCredentials {
     var volunteerAccountData = VolunteerAccountData() // 2- Volunteer
 
     var contractorAccountData = ContractorAccountData() //3-Contractor
+
+    var planDetails = PlanData()
 }

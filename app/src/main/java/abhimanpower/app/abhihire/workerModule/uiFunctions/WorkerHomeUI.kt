@@ -6,16 +6,19 @@ import abhimanpower.app.abhihire.databinding.BtmSubscriptionSheetBinding
 import abhimanpower.app.abhihire.loginModule.modalClass.LoginCredentials
 import abhimanpower.app.abhihire.paymentModule.PaymentPageActivity
 import abhimanpower.app.abhihire.volunteerModule.modalClass.MonthData
+import abhimanpower.app.abhihire.zCommonFunctions.AppData
 import abhimanpower.app.abhihire.zCommonFunctions.CallIntent
 import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
+import coil.load
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
@@ -40,6 +43,25 @@ class WorkerHomeUI(
         setAnimation()
 
     }
+
+    private fun setUserData() {
+            //Contractor
+            val workerData = LoginCredentials.workerAccountData
+
+            mBinding.tvUserName.text = workerData.name
+
+            Log.e("Test","Contractor Image : ${workerData.image}")
+
+            if (workerData.image.isNotEmpty()) {
+                mBinding.ivProfile.load(workerData.image) {
+                    placeholder(R.drawable.ic_add_photo) // Make sure you have this drawable
+                    crossfade(true)
+                    crossfade(1000)
+                }
+            }
+
+    }
+
 
     fun setVerificationStatus()
     {
@@ -122,7 +144,10 @@ class WorkerHomeUI(
             false
         )
 
-        binding.planName.text = "Worker Premium"
+        val planDetails =LoginCredentials.planDetails
+
+        binding.planName.text = planDetails.planName
+        binding.subscribeValue.text=planDetails.price
 
         binding.btSubscribe.setOnClickListener {
             CallIntent.gotoNextActivity(mContext, false, activity = activity, PaymentPageActivity())

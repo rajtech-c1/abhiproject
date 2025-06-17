@@ -188,6 +188,7 @@ class VolunteerLoginActivity : AppCompatActivity() {
             when (it.status) {
                 200 -> {
                     LoginCredentials.workerAccountData = it.accountData
+                    LoginCredentials.planDetails=it.plan
                     UtilFunctions.showToast(this, "Login Successfull")
                     sendOTP(LoginCredentials.workerAccountData.mobileNo)
                 }
@@ -209,6 +210,7 @@ class VolunteerLoginActivity : AppCompatActivity() {
             when (it.status) {
                 200 -> {
                     LoginCredentials.contractorAccountData = it.accountData
+                    LoginCredentials.planDetails=it.plan
                     UtilFunctions.showToast(this, "Login Successfull")
                     sendOTP(LoginCredentials.contractorAccountData.mobileNo)
 

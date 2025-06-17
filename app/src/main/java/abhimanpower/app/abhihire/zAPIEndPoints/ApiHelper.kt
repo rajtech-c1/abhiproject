@@ -32,6 +32,8 @@ interface ApiHelper {
 
     suspend fun updateWorkerProfile(workerData: WorkerData,photo: MultipartBody.Part): AddWorkerResponse
 
+    suspend fun updateContractorProfile(contractorData: ContractorData,photo: MultipartBody.Part): AddContractorResponse
+
     suspend fun getAvailableWorks(): GetAvailableWorksResponse
 
     suspend fun getAvailableWorkers(workCategory: Int): GetAvailableWorkersResponse

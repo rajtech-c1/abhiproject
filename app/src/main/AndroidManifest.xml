@@ -21,6 +21,12 @@
         android:theme="@style/Theme.AbhiHire"
         tools:targetApi="31">
         <activity
+            android:name=".contractorModule.EditContractorProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".contractorModule.ContractorProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".paymentModule.PaymentPageActivity"
             android:exported="false" />
         <activity

@@ -58,10 +58,12 @@ class MainActivity : AppCompatActivity() {
                     1 -> {
                         validateWorkerLogin(AppData.getUserMobileNo(this))
                     }
-                    2->{
+
+                    2 -> {
                         validateVolunteerLogin(AppData.getUserMobileNo(this))
                     }
-                    3->{
+
+                    3 -> {
                         validateContractorLogin(AppData.getUserMobileNo(this))
                     }
                 }
@@ -83,6 +85,7 @@ class MainActivity : AppCompatActivity() {
             when (it.status) {
                 200 -> {
                     LoginCredentials.workerAccountData = it.accountData
+                    LoginCredentials.planDetails = it.plan
                     CallIntent.gotoWorkerHomeActivity(this, true, this)
                 }
 
@@ -107,6 +110,7 @@ class MainActivity : AppCompatActivity() {
                     LoginCredentials.volunteerAccountData = it.accountData
                     CallIntent.gotoVolunteerHomeActivity(this, true, this)
                 }
+
                 else -> {
                     UtilFunctions.showToast(this, "No Response")
                 }
@@ -116,8 +120,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Contractor Login
-    private fun validateContractorLogin(mobileNo: String)
-    {
+    private fun validateContractorLogin(mobileNo: String) {
         loginViewModel.resetContractorLoginResponse()
         loginViewModel.contractorLogin(mobileNo)
 
@@ -125,7 +128,8 @@ class MainActivity : AppCompatActivity() {
             when (it.status) {
                 200 -> {
                     LoginCredentials.contractorAccountData = it.accountData
-                    CallIntent.gotoNextActivity(this, true, this,ContractorHomeActivity())
+                    LoginCredentials.planDetails = it.plan
+                    CallIntent.gotoNextActivity(this, true, this, ContractorHomeActivity())
                 }
 
                 else -> {

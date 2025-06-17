@@ -17,13 +17,24 @@
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:text="Select Area"
+        android:text="Select State"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="16dp" />
 
     <Spinner
-        android:id="@+id/spinnerArea"
+        android:id="@+id/spinnerState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Select District"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp" />
+
+    <Spinner
+        android:id="@+id/spinnerDistrcit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>

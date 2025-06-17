@@ -38,7 +38,8 @@ class WorkersAdapter(
         val workerData = availableWorkers[position]
 
         holder.binding.tvWorkName.text = workerData.name
-        holder.binding.tvPlaceName.text = AreaData.getDistrictState(workerData.district.toInt(),workerData.state.toInt())
+        holder.binding.tvPlaceName.text =
+            AreaData.getDistrictState(workerData.district.toInt(),workerData.state.toInt())
 
         holder.binding.tvDatePosted.text =
             "Experience : ${workerData.experience} Years"

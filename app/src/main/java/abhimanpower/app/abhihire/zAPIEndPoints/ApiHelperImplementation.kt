@@ -58,10 +58,19 @@ class ApiHelperImplementation @Inject constructor(private val apiService: ApiInt
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.pincode),
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.state.toString()),
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.district.toString()),
-            RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.workcategory.toString()),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                workerData.workcategory.toString()
+            ),
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.experience),
-            RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.verificationstatus.toString()),
-            RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.imageSelected.toString()),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                workerData.verificationstatus.toString()
+            ),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                workerData.imageSelected.toString()
+            ),
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.volunteerId.toString()),
             photo
         )
@@ -80,11 +89,20 @@ class ApiHelperImplementation @Inject constructor(private val apiService: ApiInt
             RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.pincode),
             RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.district),
             RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.state),
-            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.verificationstatus.toString()),
-            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.imageSelected.toString()),
-            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.volunteerId.toString()),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                contractorData.verificationstatus.toString()
+            ),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                contractorData.imageSelected.toString()
+            ),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                contractorData.volunteerId.toString()
+            ),
             photo
-            )
+        )
     }
 
     override suspend fun updateWorkerProfile(
@@ -100,13 +118,56 @@ class ApiHelperImplementation @Inject constructor(private val apiService: ApiInt
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.area),
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.pincode),
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.state.toString()),
-            RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.workcategory.toString()),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                workerData.workcategory.toString()
+            ),
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.experience),
-            RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.verificationstatus.toString()),
-            RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.imageSelected.toString()),
-            RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.profileImageUrl.toString()),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                workerData.verificationstatus.toString()
+            ),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                workerData.imageSelected.toString()
+            ),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                workerData.profileImageUrl.toString()
+            ),
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.volunteerId.toString()),
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.workerId.toString()),
+            photo
+        )
+    }
+
+    override suspend fun updateContractorProfile(
+        contractorData: ContractorData,
+        photo: MultipartBody.Part
+    ): AddContractorResponse {
+        return apiService.updateContractorProfile(
+            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.contractorId),
+            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.shopName),
+            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.mobileno),
+            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.emailId),
+            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.street),
+            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.area),
+            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.pincode),
+            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.state),
+            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.district),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                contractorData.verificationstatus.toString()
+            ),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                contractorData.imageSelected.toString()
+            ),
+            RequestBody.create("text/plain".toMediaTypeOrNull(), contractorData.profileImageUrl),
+            RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                contractorData.volunteerId.toString()
+            ),
             photo
         )
     }
@@ -121,7 +182,8 @@ class ApiHelperImplementation @Inject constructor(private val apiService: ApiInt
     }
 
     override suspend fun addWorkData(workData: WorkData): AddWorkDataResponse {
-        return apiService.addWorkData(workData.name,
+        return apiService.addWorkData(
+            workData.name,
             workData.description,
             workData.area,
             workData.pincode,

@@ -5,6 +5,21 @@ import abhimanpower.app.abhihire.workerModule.modalClass.State
 
 object AreaData {
 
+    fun getDistrict(districtId:Int): String
+    {
+        val districtValue: String
+        val district = telanganaDistricts.find { it.districtId == districtId }
+        districtValue = district!!.districtName
+
+        return districtValue
+    }
+
+    fun getState(stateId:Int): String
+    {
+        val state = states[stateId].stateName
+        return state
+    }
+
     fun getDistrictState(districtId: Int, stateId: Int): String {
         var districtState = "D,S"
         when (stateId) {

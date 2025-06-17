@@ -148,6 +148,7 @@
                             android:layout_weight="1"/>
 
                         <TextView
+                            android:id="@+id/tvWorkerWeek"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="50"/>
@@ -175,6 +176,7 @@
                             android:layout_weight="1"/>
 
                         <TextView
+                            android:id="@+id/tvWorkerToday"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="50"/>
@@ -245,6 +247,7 @@
                             android:layout_weight="1"/>
 
                         <TextView
+                            android:id="@+id/tvContractorsWeek"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="50"/>
@@ -272,6 +275,7 @@
                             android:layout_weight="1"/>
 
                         <TextView
+                            android:id="@+id/tvContractorTodayCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="50"/>

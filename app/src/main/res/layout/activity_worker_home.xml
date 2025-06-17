@@ -28,16 +28,25 @@
                 android:background="#FFFFFF"
                 android:paddingBottom="6dp">
 
-                <ImageView
-                    android:id="@+id/ivProfile"
-                    android:layout_width="46dp"
-                    android:layout_height="46dp"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/profilePicCV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="6dp"
-                    android:src="@drawable/ic_profile"
+                    app:cardCornerRadius="@dimen/dp_45"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/ivProfile"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_shop_owner" />
+
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/tvWelcome"
@@ -47,11 +56,11 @@
                     android:text="Welcome"
                     android:textColor="#8F8C8C"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@id/ivProfile"
-                    app:layout_constraintTop_toTopOf="@+id/ivProfile" />
+                    app:layout_constraintStart_toEndOf="@id/profilePicCV"
+                    app:layout_constraintTop_toTopOf="@+id/profilePicCV" />
 
                 <TextView
-                    android:id="@+id/tvVolunteerName"
+                    android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rajesh"

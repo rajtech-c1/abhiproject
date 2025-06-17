@@ -82,11 +82,15 @@ class ContractorHomeActivity : AppCompatActivity() {
         }
 
         binding.btAddWork.setOnClickListener {
-            CallIntent.gotoMyWorksActivity(this,false,this)
+            CallIntent.gotoMyWorksActivity(this, false, this)
         }
 
         binding.btLogout.setOnClickListener {
             logoutDialog.openLogoutDialog()
+        }
+
+        binding.ivProfile.setOnClickListener {
+            CallIntent.gotoNextActivity(this, false, this, ContractorProfileActivity())
         }
     }
 
@@ -144,7 +148,8 @@ class ContractorHomeActivity : AppCompatActivity() {
     private fun onWorkerClicked(workerAccountData: WorkerAccountData) {
         Log.e("Test", "Worker Clicked")
 
-        showCustomBottomSheetWithDataBinding(workerAccountData)
+        if (contractorHomeUI.checkWorkerSubscriptionStatus())
+            showCustomBottomSheetWithDataBinding(workerAccountData)
     }
 
     private fun showCustomBottomSheetWithDataBinding(workerAccountData: WorkerAccountData) {

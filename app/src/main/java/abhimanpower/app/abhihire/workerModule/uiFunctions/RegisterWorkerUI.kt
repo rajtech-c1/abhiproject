@@ -5,6 +5,13 @@ import abhimanpower.app.abhihire.databinding.ActivityRegisterWorkerBinding
 import abhimanpower.app.abhihire.volunteerModule.adapters.WorkCategoryAdapter
 import abhimanpower.app.abhihire.volunteerModule.modalClass.WorkCategory
 import abhimanpower.app.abhihire.volunteerModule.modalClass.WorkerData
+import abhimanpower.app.abhihire.workerModule.adapter.DistrictAdapter
+import abhimanpower.app.abhihire.workerModule.adapter.StateAdapter
+import abhimanpower.app.abhihire.workerModule.modalClass.District
+import abhimanpower.app.abhihire.workerModule.modalClass.State
+import abhimanpower.app.abhihire.zCommonFunctions.AppData
+import abhimanpower.app.abhihire.zCommonFunctions.AppData.workCategories
+import abhimanpower.app.abhihire.zCommonFunctions.AreaData
 import abhimanpower.app.abhihire.zCommonFunctions.UtilFunctions
 import android.app.DatePickerDialog
 import android.content.Context
@@ -30,6 +37,7 @@ class RegisterWorkerUI(
 
         genderOnClickListener()
         initWorkCategorySpinner()
+        initStateSpinner()
         onClickListeners()
     }
 
@@ -49,7 +57,7 @@ class RegisterWorkerUI(
         val eStreet = mBinding.etStreet.text.toString()
         val eArea = mBinding.etArea.text.toString()
         val ePincode = mBinding.etPincode.text.toString()
-        val eState = mBinding.etState.text.toString()
+//        val eState = mBinding.etState.text.toString()
 
         val eExperience = mBinding.etExperience.text.toString()
 
@@ -89,8 +97,13 @@ class RegisterWorkerUI(
             return
         }
 
-        if (eState.isEmpty()) {
-            UtilFunctions.showToast(mContext, "Enter State")
+        if (stateSelected==-1) {
+            UtilFunctions.showToast(mContext, "Select State")
+            return
+        }
+
+        if (districtSelected==-1) {
+            UtilFunctions.showToast(mContext, "Select District")
             return
         }
 
@@ -112,7 +125,7 @@ class RegisterWorkerUI(
             eStreet,
             eArea,
             ePincode,
-            1,1,
+            stateSelected,districtSelected,
             workCategorySelected,
             eExperience,
             2
@@ -197,21 +210,8 @@ class RegisterWorkerUI(
             "Select Month"
         )
 
-        val workCategories: List<WorkCategory> = listOf(
-            WorkCategory(1, "Design"),
-            WorkCategory(2, "Development"),
-            WorkCategory(3, "Testing"),
-            WorkCategory(4, "Deployment"),
-            WorkCategory(5, "Documentation"),
-            WorkCategory(6, "Client Meeting"),
-            WorkCategory(7, "Bug Fixing"),
-            WorkCategory(8, "Code Review"),
-            WorkCategory(9, "Research"),
-            WorkCategory(10, "Maintenance")
-        )
 
-
-        val allWorkCategoryList = listOf(newItem) + workCategories
+        val allWorkCategoryList = listOf(newItem) + AppData.workCategories
 
         val adapter = WorkCategoryAdapter(
             mContext,
@@ -240,5 +240,99 @@ class RegisterWorkerUI(
                 }
             }
     }
+
+    private var stateSelected = -1
+
+    private fun initStateSpinner(
+    ) {
+
+        val newItem = State(
+            0, "Select State"
+        )
+
+        val allStates = listOf(newItem) + AreaData.states
+
+        val adapter = StateAdapter(
+            mContext,
+            android.R.layout.simple_spinner_item,
+            allStates
+        )
+
+        mBinding.spSelectState.adapter = adapter
+        mBinding.spSelectState.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    stateSelected = if (position != 0)
+                        AreaData.states[position - 1].stateId
+                    else {
+                        -1
+                    }
+
+                    if (stateSelected != -1) {
+                        initDistrictSpinner()
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // Handle case when nothing is selected (optional)
+                }
+            }
+    }
+
+    private var districtSelected = -1
+
+    private fun initDistrictSpinner(
+    ) {
+
+        val newItem = District(
+            0, "Select District"
+        )
+
+        val allDistricts = mutableListOf(newItem)
+
+        when (stateSelected) {
+            1 -> {
+                allDistricts += AreaData.telanganaDistricts
+            }
+
+            2 -> {
+                allDistricts += AreaData.andhraPradeshDistricts
+            }
+        }
+
+
+        val adapter = DistrictAdapter(
+            mContext,
+            android.R.layout.simple_spinner_item,
+            allDistricts
+        )
+
+        mBinding.spSelectDistrict.adapter = adapter
+        mBinding.spSelectDistrict.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    districtSelected = if (position != 0)
+                        allDistricts[position].districtId
+                    else {
+                        -1
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // Handle case when nothing is selected (optional)
+                }
+            }
+    }
+
 
 }

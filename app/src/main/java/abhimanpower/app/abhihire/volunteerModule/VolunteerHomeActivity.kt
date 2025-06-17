@@ -67,7 +67,7 @@ class VolunteerHomeActivity : AppCompatActivity() {
 
     private fun onLogoutClicked() {
         AppData.putUserLoginStatus(this, false)
-        CallIntent.gotoLoginActivity(this, true, this)
+        CallIntent.gotoRoleSelectionActivity(this, true, this)
     }
 
 
@@ -91,9 +91,13 @@ class VolunteerHomeActivity : AppCompatActivity() {
 
     private fun onGetOverAllStatsResponseFetched(response: GetOverallStatsResponse) {
         if (response.status == 200) {
-            binding.tvTotalVolunteers.text = response.totalCount.toString()
-            binding.tvAddedToday.text = response.todayCount.toString()
-            binding.tvAddedThisWeek.text = response.weekCount.toString()
+            binding.tvTotalVolunteers.text = response.workers!!.totalCount.toString()
+            binding.tvWorkerToday.text = response.workers.todayCount.toString()
+            binding.tvWorkerWeek.text = response.workers.weekCount.toString()
+
+            binding.tvTotalContractors.text=response.contractors!!.totalCount.toString()
+            binding.tvContractorsWeek.text= response.contractors.weekCount.toString()
+            binding.tvContractorTodayCount.text=response.contractors.todayCount.toString()
         } else {
             UtilFunctions.showToast(this, "Server Error")
         }

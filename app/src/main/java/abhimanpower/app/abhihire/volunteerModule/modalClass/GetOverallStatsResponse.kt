@@ -9,10 +9,8 @@ data class GetOverallStatsResponse(
     val status: Int? = null,
     @SerializedName("message")
     val message: String? = null,
-    @SerializedName("total_count")
-    val totalCount: Int? = null,
-    @SerializedName("today_count")
-    val todayCount: Int? = null,
-    @SerializedName("week_count")
-    val weekCount: Int? = null,
+    @SerializedName("workers")
+    val workers: WorkersStats? = null,
+    @SerializedName("contractors")
+    val contractors: WorkersStats? = null
 )

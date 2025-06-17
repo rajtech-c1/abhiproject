@@ -10,6 +10,8 @@ data class WorkData(
     val workName: String = "",
     @SerializedName("Place")
     val place: String = "",
+    @SerializedName("State")
+    val state: String = "",
     @SerializedName("District")
     val district: String = "",
     @SerializedName("Description")
@@ -27,6 +29,13 @@ data class WorkData(
     @SerializedName("Pincode")
     val pincode: String = "",
     @SerializedName("DatePosted")
-    val datePosted: String = ""
+    val datePosted: String = "",
+
+    @SerializedName("PlanId")
+    val planId: String = "",
+    @SerializedName("PlanName")
+    val planName: String = "",
+    @SerializedName("Price")
+    val price: String = ""
 
     )

@@ -1,5 +1,6 @@
 package abhimanpower.app.abhihire.contractorModule.modalClass
 
+import abhimanpower.app.abhihire.workerModule.modalClass.PlanData
 import com.google.gson.annotations.SerializedName
 
 
@@ -8,6 +9,8 @@ data class ContractorLoginResponse(
     val status: Int? = null,
     @SerializedName("message")
     val message: String? = null,
-    @SerializedName("data")
-    val accountData: ContractorAccountData = ContractorAccountData()
+    @SerializedName("contractor")
+    val accountData: ContractorAccountData = ContractorAccountData(),
+    @SerializedName("plan")
+    val plan: PlanData = PlanData()
 )

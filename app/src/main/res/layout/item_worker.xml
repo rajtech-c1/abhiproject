@@ -18,7 +18,7 @@
                 android:id="@+id/ivWorkCategory"
                 android:layout_width="@dimen/dp_64"
                 android:layout_height="@dimen/dp_64"
-                android:src="@drawable/ic_work_image"
+                android:src="@drawable/wc_carpenter"
                 android:layout_marginStart="@dimen/dp_6"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

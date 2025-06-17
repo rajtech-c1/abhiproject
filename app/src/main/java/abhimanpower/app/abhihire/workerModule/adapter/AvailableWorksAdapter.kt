@@ -2,7 +2,7 @@ package abhimanpower.app.abhihire.workerModule.adapter
 
 import abhimanpower.app.abhihire.databinding.ItemWorkdetailsBinding
 import abhimanpower.app.abhihire.workerModule.modalClass.WorkData
-import abhimanpower.app.abhihire.zCommonFunctions.AppData
+import abhimanpower.app.abhihire.zCommonFunctions.AreaData
 import abhimanpower.app.abhihire.zCommonFunctions.UtilFunctions
 import android.content.Context
 import android.view.LayoutInflater
@@ -36,7 +36,8 @@ class AvailableWorksAdapter(
         val workData = availableWorks[position]
 
         holder.binding.tvWorkName.text = workData.workName
-        holder.binding.tvPlaceName.text = AppData.areaList[workData.district.toInt()-1].areaName
+        holder.binding.tvPlaceName.text =
+            AreaData.getDistrictState(workData.district.toInt(), workData.state.toInt())
 
         holder.binding.tvDatePosted.text =
             "Posted on : ${UtilFunctions.formatDateToMonthDay(workData.datePosted)}"

@@ -1,10 +1,11 @@
-package abhimanpower.app.abhihire.workerModule
+package abhimanpower.app.abhihire.contractorModule
 
 import abhimanpower.app.abhihire.R
-import abhimanpower.app.abhihire.databinding.ActivityWorkerProfileBinding
+import abhimanpower.app.abhihire.databinding.ActivityContractorProfileBinding
 import abhimanpower.app.abhihire.loginModule.LogoutDialog
 import abhimanpower.app.abhihire.loginModule.modalClass.LoginCredentials
 import abhimanpower.app.abhihire.zCommonFunctions.AppData
+import abhimanpower.app.abhihire.zCommonFunctions.AreaData
 import abhimanpower.app.abhihire.zCommonFunctions.CallIntent
 import android.os.Bundle
 import android.util.Log
@@ -13,25 +14,24 @@ import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class WorkerProfileActivity : AppCompatActivity() {
+class ContractorProfileActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityWorkerProfileBinding
+    private lateinit var binding: ActivityContractorProfileBinding
 
     private lateinit var logoutDialog: LogoutDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityWorkerProfileBinding.inflate(layoutInflater)
+        binding = ActivityContractorProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         logoutDialog = LogoutDialog(layoutInflater, this, ::onLogoutClicked)
 
 
-//        setData()
-//        setImage()
         setOnClickListeners()
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -41,33 +41,35 @@ class WorkerProfileActivity : AppCompatActivity() {
     }
 
     private fun setData() {
-        val workerAccountData = LoginCredentials.workerAccountData
-        Log.e("Test","Worker Account Details : $workerAccountData")
+        if (AppData.getUserRole(this) == 3) {
+            val workerAccountData = LoginCredentials.contractorAccountData
+            Log.e("Test", "Contractor Account Details : $workerAccountData")
 
-        binding.tvMobileNo.text = workerAccountData.mobileNo
-        binding.tvFullName.text = workerAccountData.name
-        binding.tvDOB.text = workerAccountData.dob
+            binding.tvMobileNo.text = workerAccountData.mobileNo
+            binding.tvFullName.text = workerAccountData.name
+            binding.tvEmail.text = workerAccountData.email
+//        binding.tvDOB.text = workerAccountData.dob
 
-        if (workerAccountData.gender.toInt() == 1)
-            binding.tvGender.text = "Male"
-        else
-            binding.tvGenderTitle.text = "FeMale"
+//        if (workerAccountData.gender.toInt() == 1)
+//            binding.tvGender.text = "Male"
+//        else
+//            binding.tvGenderTitle.text = "FeMale"
 
-        binding.tvStreet.text = workerAccountData.street
-        binding.tvArea.text = workerAccountData.area
-        binding.tvPincode.text = workerAccountData.pincode
-        binding.tvState.text = workerAccountData.state
+            binding.tvStreet.text = workerAccountData.street
+            binding.tvArea.text = workerAccountData.area
+            binding.tvPincode.text = workerAccountData.pincode
+            binding.tvState.text = AreaData.getState(workerAccountData.state.toInt()-1)
+            binding.tvDistrict.text = AreaData.getDistrict(workerAccountData.district.toInt())
 
-        binding.tvWorkCategory.text =
-            AppData.workCategories[workerAccountData.workCategory.toInt()].categoryName
-        binding.tvWorkExperience.text = workerAccountData.experience
+        } else {
+            Log.e("Test", "Profile of General User")
+        }
 
     }
 
-    private fun setImage()
-    {
-        Log.e("Test","Image Loading : ${LoginCredentials.workerAccountData.image}")
-        binding.profilePic.load(LoginCredentials.workerAccountData.image) {
+    private fun setImage() {
+        Log.e("Test", "Image Loading : ${LoginCredentials.contractorAccountData.image}")
+        binding.profilePic.load(LoginCredentials.contractorAccountData.image) {
             // Optional: Add a placeholder image while loading
             placeholder(R.drawable.ic_add_photo) // Make sure you have this drawable
             // Optional: Add an error image if loading fails
@@ -92,7 +94,8 @@ class WorkerProfileActivity : AppCompatActivity() {
         }
 
         binding.btEditProfile.setOnClickListener {
-            CallIntent.gotoEditProfileActivity(this, false, this)
+            CallIntent.gotoNextActivity(this, false, this, EditContractorProfileActivity())
+//            CallIntent.gotoEditProfileActivity(this, false, this)
         }
 
         binding.btLogout.setOnClickListener {

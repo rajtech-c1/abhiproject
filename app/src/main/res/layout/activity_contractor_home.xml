@@ -3,320 +3,323 @@
 <layout>
 
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".contractorModule.ContractorHomeActivity">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/appBarLt"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="@dimen/dp_4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:context=".contractorModule.ContractorHomeActivity">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/appBarLt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="@dimen/dp_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:paddingBottom="6dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/profilePicCV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    app:cardCornerRadius="@dimen/dp_45"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/ivProfile"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_shop_owner" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tvWelcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Welcome"
+                    android:textColor="#8F8C8C"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@id/profilePicCV"
+                    app:layout_constraintTop_toTopOf="@+id/profilePicCV" />
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rajesh"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/profilePicCV"
+                    app:layout_constraintStart_toStartOf="@+id/tvWelcome"
+                    app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_6"
+                    android:background="@drawable/bg_verification_status"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="@dimen/dp_8"
+                    android:paddingVertical="@dimen/dp_6"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/ivVerification"
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        android:src="@drawable/verified" />
+
+                    <TextView
+                        android:id="@+id/tvSubscriptionStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/sp_4"
+                        android:text="Prize Money"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_12" />
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/btAddWork"
+                    android:layout_width="@dimen/dp_28"
+                    android:layout_height="@dimen/dp_28"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    android:src="@drawable/ic_add_work"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tvVolunteerName"
+                    app:layout_constraintEnd_toStartOf="@id/btLogout"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/btLogout"
+                    android:layout_width="@dimen/dp_28"
+                    android:layout_height="@dimen/dp_28"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    android:src="@drawable/bt_logout"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tvVolunteerName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/availableWorkersTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_8"
+            android:text="Available workers"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appBarLt" />
+
+
+        <TextView
+            android:id="@+id/availableWorkersCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_2"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:text="Find workers by category"
+            android:textColor="@color/text_caption"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintBottom_toBottomOf="@id/availableWorkersTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/availableWorkersTitle" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bgFilter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:paddingBottom="6dp">
+            android:layout_marginHorizontal="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/availableWorkersTitle">
 
-            <ImageView
-                android:id="@+id/ivProfile"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="6dp"
-                android:src="@drawable/ic_profile"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvWelcome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Welcome"
-                android:textColor="#8F8C8C"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@id/ivProfile"
-                app:layout_constraintTop_toTopOf="@+id/ivProfile" />
-
-            <TextView
-                android:id="@+id/tvVolunteerName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rajesh"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/ivProfile"
-                app:layout_constraintStart_toStartOf="@+id/tvWelcome"
-                app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ltSearch"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_verification_status"
-                android:gravity="center_vertical"
-                android:paddingHorizontal="@dimen/dp_8"
-                android:paddingVertical="@dimen/dp_6"
-                android:layout_marginEnd="@dimen/dp_6"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                android:gravity="center_vertical">
+
+                <Spinner
+                    android:id="@+id/spSelectWorkCategory"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_spinner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvSelectWork" />
 
                 <ImageView
-                    android:id="@+id/ivVerification"
-                    android:layout_width="@dimen/dp_18"
-                    android:layout_height="@dimen/dp_18"
-                    android:src="@drawable/verified" />
+                    android:id="@+id/btFilter"
+                    android:layout_width="@dimen/dp_26"
+                    android:layout_height="@dimen/dp_26"
+                    android:layout_marginEnd="@dimen/dp_6"
+                    android:src="@drawable/filter"
+                    android:visibility="gone" />
 
-                <TextView
-                    android:id="@+id/tvSubscriptionStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/sp_4"
-                    android:text="Prize Money"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp_12" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/ltAreaDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ltSearch">
+
+                <Spinner
+                    android:id="@+id/spSelectState"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_marginEnd="@dimen/dp_6"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_spinner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvSelectWork" />
+
+                <Spinner
+                    android:id="@+id/spSelectDistrict"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_spinner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvSelectWork" />
 
 
             </LinearLayout>
 
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/btAddWork"
-                android:layout_width="@dimen/dp_28"
-                android:layout_height="@dimen/dp_28"
-                android:layout_marginEnd="@dimen/dp_12"
-                android:src="@drawable/ic_add_work"
-                app:layout_constraintBottom_toBottomOf="@id/tvVolunteerName"
-                app:layout_constraintEnd_toStartOf="@id/btLogout"
-                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        <RelativeLayout
+            android:id="@+id/progresslayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#ffffff"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bgFilter">
+
+            <ProgressBar
+                android:layout_width="@dimen/dp_48"
+                android:layout_height="@dimen/dp_48"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/color2" />
+
+            <!-- Center Icon -->
             <ImageView
-                android:visibility="gone"
-                android:id="@+id/btLogout"
-                android:layout_width="@dimen/dp_28"
-                android:layout_height="@dimen/dp_28"
-                android:layout_marginEnd="@dimen/dp_12"
-                android:src="@drawable/bt_logout"
-                app:layout_constraintBottom_toBottomOf="@id/tvVolunteerName"
+                android:id="@+id/centerIcon"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_launcher_foreground" />
+        </RelativeLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAvailableWorkers"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_6"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bgFilter" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/emptyList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_6"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bgFilter">
+
+
+            <TextView
+                android:id="@+id/tvNoResultsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_12"
+                android:text="No Results Found"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/ivEmpty"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/ivEmpty"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:src="@drawable/iv_empty_list"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/btClearFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_12"
+                android:text="Clear Filter"
+                android:textColor="@color/blue"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivEmpty" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
-
-
-
-    <TextView
-        android:id="@+id/availableWorkersTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_8"
-        android:text="Available workers"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginStart="@dimen/dp_12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBarLt" />
-
-
-    <TextView
-        android:id="@+id/availableWorkersCaption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_2"
-        android:text="Find workers by category"
-        android:textColor="@color/text_caption"
-        android:textSize="@dimen/sp_12"
-        android:layout_marginEnd="@dimen/dp_12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/availableWorkersTitle"
-        app:layout_constraintBottom_toBottomOf="@id/availableWorkersTitle"/>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bgFilter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_6"
-        android:layout_marginHorizontal="@dimen/dp_12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/availableWorkersTitle">
-
-
-    <LinearLayout
-        android:id="@+id/ltSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
-
-        <Spinner
-            android:id="@+id/spSelectWorkCategory"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="42dp"
-            android:background="@drawable/bg_spinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSelectWork"/>
-
-        <ImageView
-            android:visibility="gone"
-            android:id="@+id/btFilter"
-            android:layout_width="@dimen/dp_26"
-            android:layout_height="@dimen/dp_26"
-            android:src="@drawable/filter"
-            android:layout_marginEnd="@dimen/dp_6"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ltAreaDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ltSearch">
-
-        <Spinner
-            android:id="@+id/spSelectState"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="42dp"
-            android:layout_marginEnd="@dimen/dp_6"
-            android:background="@drawable/bg_spinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSelectWork"/>
-
-        <Spinner
-            android:id="@+id/spSelectDistrict"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="42dp"
-            android:background="@drawable/bg_spinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSelectWork"/>
-
-
-    </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-    <RelativeLayout
-        android:id="@+id/progresslayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:background="#ffffff"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bgFilter"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <ProgressBar
-            android:layout_width="@dimen/dp_48"
-            android:layout_height="@dimen/dp_48"
-            android:layout_centerInParent="true"
-            android:indeterminateTint="@color/color2"
-            />
-
-        <!-- Center Icon -->
-        <ImageView
-            android:id="@+id/centerIcon"
-            android:layout_width="@dimen/dp_32"
-            android:layout_height="@dimen/dp_32"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_launcher_foreground" />
-    </RelativeLayout>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:visibility="gone"
-        android:id="@+id/rvAvailableWorkers"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="@dimen/dp_12"
-        android:layout_marginTop="@dimen/dp_6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bgFilter" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:visibility="gone"
-        android:id="@+id/emptyList"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="@dimen/dp_12"
-        android:layout_marginTop="@dimen/dp_6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bgFilter">
-
-
-
-        <TextView
-            android:id="@+id/tvNoResultsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_12"
-            android:text="No Results Found"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/ivEmpty"/>
-
-
-        <ImageView
-            android:id="@+id/ivEmpty"
-            android:layout_width="@dimen/dp_100"
-            android:layout_height="@dimen/dp_100"
-            android:src="@drawable/iv_empty_list"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <TextView
-            android:id="@+id/btClearFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_12"
-            android:text="Clear Filter"
-            android:textColor="@color/blue"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivEmpty"/>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

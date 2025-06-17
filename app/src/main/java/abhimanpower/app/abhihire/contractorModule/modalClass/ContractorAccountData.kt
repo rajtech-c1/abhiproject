@@ -29,6 +29,9 @@ data class ContractorAccountData(
     @SerializedName("State")
     val state: String = "",
 
+    @SerializedName("District")
+    val district: String = "",
+
     @SerializedName("VerificationStatus")
     val verificationStatus: String = "",
 

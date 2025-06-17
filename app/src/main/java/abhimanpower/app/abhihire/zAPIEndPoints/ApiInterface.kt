@@ -110,6 +110,25 @@ interface ApiInterface {
         @Part productImage: MultipartBody.Part
     ): AddWorkerResponse
 
+    @Multipart
+    @POST("Update_Contractor.php")
+    suspend fun updateContractorProfile(
+        @Part("ContractorId") contractorId: RequestBody,
+        @Part("Name") name: RequestBody,
+        @Part("MobileNo") mobileNo: RequestBody,
+        @Part("Email") email: RequestBody,
+        @Part("Street") street: RequestBody,
+        @Part("Area") area: RequestBody,
+        @Part("Pincode") pincode: RequestBody,
+        @Part("State") state: RequestBody,
+        @Part("District") district: RequestBody,
+        @Part("VerificationStatus") verificationStatus: RequestBody,
+        @Part("ImageSelected") imageSelected: RequestBody,
+        @Part("ImageURL") imageURL: RequestBody,
+        @Part("VolunteerId") volunteerId: RequestBody,
+        @Part contractorImage: MultipartBody.Part
+    ): AddContractorResponse
+
     @GET("Get_AvailableWorks.php")
     suspend fun getAvailableWorks(): GetAvailableWorksResponse
 

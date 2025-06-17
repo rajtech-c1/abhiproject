@@ -5,12 +5,17 @@ import abhimanpower.app.abhihire.contractorModule.modalClass.GetAvailableWorkers
 import abhimanpower.app.abhihire.contractorModule.modalClass.WorkData
 import abhimanpower.app.abhihire.loginModule.apiFunctions.LoginRepository
 import abhimanpower.app.abhihire.loginModule.apiFunctions.LoginResponse
+import abhimanpower.app.abhihire.volunteerModule.modalClass.AddContractorResponse
+import abhimanpower.app.abhihire.volunteerModule.modalClass.AddWorkerResponse
+import abhimanpower.app.abhihire.volunteerModule.modalClass.ContractorData
+import abhimanpower.app.abhihire.volunteerModule.modalClass.WorkerData
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 
@@ -51,5 +56,20 @@ class ContractorViewModel @Inject constructor(
         return addWorkData
     }
 
+    private var updateContractorResponse = MutableLiveData<AddContractorResponse>()
+
+    fun updateContractorProfile(contractorData: ContractorData, photo: MultipartBody.Part) {
+        viewModelScope.launch {
+            updateContractorResponse.postValue(contractorRepository.updateContractorProfile(contractorData, photo))
+        }
+    }
+
+    fun resetUpdateContractorResponse() {
+        updateContractorResponse = MutableLiveData<AddContractorResponse>()
+    }
+
+    fun getUpdateContractorResponse(): LiveData<AddContractorResponse> {
+        return updateContractorResponse
+    }
 
 }

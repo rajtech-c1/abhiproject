@@ -2,7 +2,7 @@ package abhimanpower.app.abhihire.contractorModule.uiFunctions
 
 import abhimanpower.app.abhihire.R
 import abhimanpower.app.abhihire.databinding.ActivityContractorHomeBinding
-import abhimanpower.app.abhihire.databinding.BtmSubscriptionSheetBinding
+import abhimanpower.app.abhihire.databinding.BtmContractorSubscriptionBinding
 import abhimanpower.app.abhihire.loginModule.modalClass.LoginCredentials
 import abhimanpower.app.abhihire.paymentModule.PaymentPageActivity
 import abhimanpower.app.abhihire.volunteerModule.adapters.WorkCategoryAdapter
@@ -20,13 +20,14 @@ import android.content.Context
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.AdapterView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import coil.load
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
@@ -46,42 +47,78 @@ class ContractorHomeUI(
         mContext = context
         mBinding = binding
 
+        setUserData()
         setVerificationStatus()
         setAnimation()
         initStateSpinner()
         initDistrictSpinner()
         initWorkCategorySpinner()
-        onClickListeners()
+
+        setSpinnersTouchable()
     }
 
-    fun onClickListeners() {
-        mBinding.ltSearch.setOnClickListener {
-            if (checkWorkerSubscriptionStatus()) {
-                mBinding.spSelectWorkCategory.isEnabled = true
-                mBinding.spSelectState.isEnabled = true
-                mBinding.spSelectDistrict.isEnabled = true
-            } else {
-                mBinding.spSelectWorkCategory.isEnabled = false
-                mBinding.spSelectState.isEnabled = false
-                mBinding.spSelectDistrict.isEnabled = false
+    private fun setUserData() {
+        if (AppData.getUserRole(mContext) == 3) {
+            //Contractor
+            val contractorData = LoginCredentials.contractorAccountData
+
+            mBinding.tvUserName.text = contractorData.name
+
+            Log.e("Test","Contractor Image : ${contractorData.image}")
+
+            if (contractorData.image.isNotEmpty()) {
+                setProfileImage(contractorData.image)
             }
+        }else{
+            //General User
+            Log.e("Test","General User Data")
         }
     }
 
-    fun spinnerTouchListeners()
-    {
+    private fun setProfileImage(url: String) {
+        Log.e("Test","Image Loading : $url")
+
+        mBinding.ivProfile.load(url) {
+            placeholder(R.drawable.ic_add_photo) // Make sure you have this drawable
+            crossfade(true)
+            crossfade(1000)
+        }
+    }
+
+
+    private fun setSpinnersTouchable() {
+
         mBinding.spSelectWorkCategory.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
-                if (LoginCredentials.contractorAccountData.verificationStatus.toInt()==2) {
+                Log.e("Test", "A_UP")
+                !checkWorkerSubscriptionStatus()
 
-                }
-                // Return `true` to consume the event (prevents dropdown)
-                true
+            } else {
+                false
+            }
+        }
+
+        mBinding.spSelectState.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                Log.e("Test", "A_UP")
+                !checkWorkerSubscriptionStatus()
+
+            } else {
+                false
+            }
+        }
+
+        mBinding.spSelectDistrict.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                Log.e("Test", "A_UP")
+                !checkWorkerSubscriptionStatus()
+
             } else {
                 false
             }
         }
     }
+
 
     private fun setVerificationStatus() {
         val workerData = LoginCredentials.contractorAccountData
@@ -109,7 +146,7 @@ class ContractorHomeUI(
         }
     }
 
-    private fun checkWorkerSubscriptionStatus(): Boolean {
+    fun checkWorkerSubscriptionStatus(): Boolean {
         val workerData = LoginCredentials.contractorAccountData
 
         when (workerData.verificationStatus.toInt()) {
@@ -161,7 +198,8 @@ class ContractorHomeUI(
             "Select Work Category"
         )
 
-        val allWorkCategoryList = listOf(newItem) + AppData.workCategories
+        val allWorkCategoryList = mutableListOf(newItem) + AppData.workCategories
+
 
         val adapter = WorkCategoryAdapter(
             mContext,
@@ -178,7 +216,6 @@ class ContractorHomeUI(
                     position: Int,
                     id: Long
                 ) {
-
 
                     workCategorySelected = if (position != 0)
                         workCategories[position - 1].categoryId
@@ -350,14 +387,17 @@ class ContractorHomeUI(
             }
         }
 
-        val binding: BtmSubscriptionSheetBinding = DataBindingUtil.inflate(
+        val binding: BtmContractorSubscriptionBinding = DataBindingUtil.inflate(
             layoutInflater,
-            R.layout.btm_subscription_sheet,
+            R.layout.btm_contractor_subscription,
             null,
             false
         )
 
-        binding.planName.text = "Worker Premium"
+        val planDetails = LoginCredentials.planDetails
+
+        binding.planName.text = planDetails.planName
+        binding.subscribeValue.text = planDetails.price
 
         binding.btSubscribe.setOnClickListener {
             CallIntent.gotoNextActivity(mContext, false, activity = activity, PaymentPageActivity())
