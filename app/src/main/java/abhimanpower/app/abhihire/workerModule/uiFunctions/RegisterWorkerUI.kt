@@ -207,7 +207,7 @@ class RegisterWorkerUI(
 
         val newItem = WorkCategory(
             0,
-            "Select Month"
+            "Select Work Category"
         )
 
 

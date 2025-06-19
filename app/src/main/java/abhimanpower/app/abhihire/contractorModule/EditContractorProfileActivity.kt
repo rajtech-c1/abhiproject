@@ -12,6 +12,7 @@ import abhimanpower.app.abhihire.volunteerModule.modalClass.ContractorData
 import abhimanpower.app.abhihire.zCommonFunctions.AppData
 import abhimanpower.app.abhihire.zCommonFunctions.UtilFunctions
 import android.Manifest
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -64,10 +65,14 @@ class EditContractorProfileActivity : AppCompatActivity() {
                 "Test",
                 "Contractor Image Loading : ${LoginCredentials.contractorAccountData.image}"
             )
-            binding.profilePic.load(LoginCredentials.contractorAccountData.image) {
-                placeholder(R.drawable.ic_add_photo) // Make sure you have this drawable
-                crossfade(true)
-                crossfade(1000)
+            if (LoginCredentials.contractorAccountData.image.isNotEmpty()) {
+                binding.profilePic.load(LoginCredentials.contractorAccountData.image) {
+                    placeholder(R.drawable.ic_add_photo) // Make sure you have this drawable
+                    crossfade(true)
+                    crossfade(1000)
+                }
+            } else {
+                binding.profilePic.setImageResource(R.drawable.ic_shop_owner)
             }
         } else {
             Log.e("Test", "General User Image Loading : ")
@@ -321,5 +326,7 @@ class EditContractorProfileActivity : AppCompatActivity() {
         val dummyRequestBody = dummyBytes.toRequestBody("image/jpeg".toMediaTypeOrNull())
         return MultipartBody.Part.createFormData("WorkerImage", "dummy.jpg", dummyRequestBody)
     }
+
+
 
 }

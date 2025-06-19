@@ -132,6 +132,8 @@ class WorkerHomeActivity : AppCompatActivity() {
 
         if (worksList.isEmpty())
             workerHomeUI.hideList()
+        else
+            workerHomeUI.showList()
 
         availableWorksAdapter = AvailableWorksAdapter(this, worksList, ::onWorkClicked)
 
@@ -275,21 +277,22 @@ class WorkerHomeActivity : AppCompatActivity() {
 
                 var selectedDistrict: District? = null
 
-                when (selectedArea!!.stateId) {
-                    1 -> {
-                        selectedDistrict =
-                            if (selectedDistrictPosition == 0) null else AreaData.telanganaDistricts[selectedDistrictPosition - 1]
+                if (selectedArea != null)
+                    when (selectedArea.stateId) {
+                        1 -> {
+                            selectedDistrict =
+                                if (selectedDistrictPosition == 0) null else AreaData.telanganaDistricts[selectedDistrictPosition - 1]
+
+                        }
+
+                        2 -> {
+                            selectedDistrict =
+                                if (selectedDistrictPosition == 0) null else AreaData.andhraPradeshDistricts[selectedDistrictPosition - 1]
+
+                        }
+                        //TODO add 3 more states here
 
                     }
-
-                    2 -> {
-                        selectedDistrict =
-                            if (selectedDistrictPosition == 0) null else AreaData.andhraPradeshDistricts[selectedDistrictPosition - 1]
-
-                    }
-                    //TODO add 3 more states here
-
-                }
 
 
                 onFilterApplied(selectedCategory, selectedArea, selectedDistrict)

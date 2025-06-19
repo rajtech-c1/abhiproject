@@ -68,4 +68,12 @@
     <string name="district_west_godavari">West Godavari</string>
     <string name="district_ysr_kadapa">YSR Kadapa</string>
 
+<!--    Role Selection-->
+
+    <string name="main_title">Choose Your Role to Continue</string>
+
+<!--    Volunteer Home-->
+    <string name="welcome">Welcome</string>
+
+
 </resources>

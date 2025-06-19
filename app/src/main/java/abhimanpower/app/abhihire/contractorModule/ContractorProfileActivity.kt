@@ -7,6 +7,7 @@ import abhimanpower.app.abhihire.loginModule.modalClass.LoginCredentials
 import abhimanpower.app.abhihire.zCommonFunctions.AppData
 import abhimanpower.app.abhihire.zCommonFunctions.AreaData
 import abhimanpower.app.abhihire.zCommonFunctions.CallIntent
+import abhimanpower.app.abhihire.zCommonFunctions.UtilFunctions
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -58,8 +59,11 @@ class ContractorProfileActivity : AppCompatActivity() {
             binding.tvStreet.text = workerAccountData.street
             binding.tvArea.text = workerAccountData.area
             binding.tvPincode.text = workerAccountData.pincode
-            binding.tvState.text = AreaData.getState(workerAccountData.state.toInt()-1)
-            binding.tvDistrict.text = AreaData.getDistrict(workerAccountData.district.toInt())
+            binding.tvState.text = AreaData.getState(workerAccountData.state.toInt() - 1)
+            binding.tvDistrict.text = AreaData.getDistrict(
+                workerAccountData.district.toInt(),
+                workerAccountData.state.toInt()
+            )
 
         } else {
             Log.e("Test", "Profile of General User")
@@ -69,17 +73,15 @@ class ContractorProfileActivity : AppCompatActivity() {
 
     private fun setImage() {
         Log.e("Test", "Image Loading : ${LoginCredentials.contractorAccountData.image}")
-        binding.profilePic.load(LoginCredentials.contractorAccountData.image) {
-            // Optional: Add a placeholder image while loading
-            placeholder(R.drawable.ic_add_photo) // Make sure you have this drawable
-            // Optional: Add an error image if loading fails
-//            error(R.drawable.error_image) // Make sure you have this drawable
-            // Optional: Crossfade animation
-            crossfade(true)
-            crossfade(1000)
-//            crossfadeDuration(1000) // 1 second
-            // Optional: Transformations (e.g., centerCrop, circleCrop)
-            // transformations(CircleCropTransformation())
+
+        if (LoginCredentials.contractorAccountData.image.isNotEmpty()) {
+            binding.profilePic.load(LoginCredentials.contractorAccountData.image) {
+                placeholder(R.drawable.ic_add_photo) // Make sure you have this drawable
+                crossfade(true)
+                crossfade(1000)
+            }
+        }else{
+            binding.profilePic.setImageResource(R.drawable.ic_shop_owner)
         }
     }
 
@@ -100,6 +102,10 @@ class ContractorProfileActivity : AppCompatActivity() {
 
         binding.btLogout.setOnClickListener {
             logoutDialog.openLogoutDialog()
+        }
+
+        binding.btTranslate.setOnClickListener {
+            UtilFunctions.showLanguageSelectionDialog(this, this)
         }
     }
 }

@@ -54,22 +54,29 @@
         </androidx.cardview.widget.CardView>
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="@dimen/dp_12"
-            android:layout_marginTop="@dimen/dp_6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appBarLt">
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_6">
+
             <ImageView
                 android:id="@+id/ivWorkLogo"
-                android:layout_width="@dimen/dp_64"
-                android:layout_height="@dimen/dp_64"
-                android:src="@drawable/ic_work_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_200"
+                android:src="@drawable/wc_1"
+                android:background="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -82,77 +89,261 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/ivWorkLogo"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivWorkLogo" />
+
 
             <LinearLayout
-                android:id="@+id/ltPlaceName"
+                android:id="@+id/ltDatePosted"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_12"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@id/ivWorkLogo"
+                app:layout_constraintStart_toStartOf="@id/tvWorkName"
                 app:layout_constraintTop_toBottomOf="@id/tvWorkName">
 
                 <ImageView
                     android:layout_width="@dimen/dp_16"
                     android:layout_height="@dimen/dp_16"
-                    android:src="@drawable/place_location" />
-
-                <TextView
-                    android:id="@+id/tvPlaceName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_6"
-                    android:text="Place Name, City"
-                    android:textColor="#000000"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_12"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@id/ivWorkLogo"
-                app:layout_constraintTop_toBottomOf="@id/ltPlaceName">
-
-                <ImageView
-                    android:layout_width="@dimen/dp_16"
-                    android:layout_height="@dimen/dp_16"
-                    android:src="@drawable/ic_date_posted" />
+                    android:src="@drawable/iv_work_category" />
 
                 <TextView
                     android:id="@+id/tvDatePosted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_6"
-                    android:text="Posted On : June 7"
+                    android:text="Work Category : Carpenter"
                     android:textColor="#000000"
                     android:textSize="14sp" />
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tvDescription"
+                android:id="@+id/tvDescriptionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_6"
+                android:text="Description"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ltDatePosted" />
+
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_4"
+                android:layout_marginHorizontal="@dimen/dp_12"
                 android:justificationMode="inter_word"
                 android:text="This is the perfect place to work if you are passionate about technology and want an opportunity to use your creativity to help grow and scale a global range of IT systems, Infrastructure and IT Services. Our cutting-edge technology allows us to stream sports content to millions of concurrent viewers globally across multiple platforms and devices. DAZN’s Cloud based architecture unifies a range of technologies in order to deliver a seamless user experience and support a global user base and company infrastructure."
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivWorkLogo" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDescriptionTitle" />
+
+            <TextView
+                android:id="@+id/tvDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_6"
+                android:text="Details"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+
+
+            <LinearLayout
+                android:id="@+id/ltDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginHorizontal="@dimen/dp_12"
+                android:orientation="vertical"
+                android:background="@drawable/table_background"
+                app:layout_constraintTop_toBottomOf="@id/tvDetails">
+
+                <!-- First Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvMobileNoTitle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Posted On"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:paddingVertical="@dimen/dp_12"
+                        android:paddingStart="@dimen/dp_12"
+                        android:background="@drawable/cell_border_top_left"/>
+
+                    <TextView
+                        android:id="@+id/tvMobileValue"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="98767876797"
+                        android:textColor="@color/black"
+                        android:paddingVertical="@dimen/dp_12"
+                        android:paddingStart="@dimen/dp_12"
+                        android:background="@drawable/cell_border_top_right"/>
+                </LinearLayout>
+
+                <!-- Second Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Area"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+
+                        android:paddingVertical="@dimen/dp_12"
+                        android:paddingStart="@dimen/dp_12"
+                        android:background="@drawable/cell_border_left"/>
+
+                    <TextView
+                        android:id="@+id/tvAreaValue"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Painter"
+                        android:textColor="@color/black"
+
+                        android:paddingVertical="@dimen/dp_12"
+                        android:paddingStart="@dimen/dp_12"
+                        android:background="@drawable/cell_border_right"/>
+                </LinearLayout>
+
+                <!-- Third Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="District"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+
+                        android:paddingVertical="@dimen/dp_12"
+                        android:paddingStart="@dimen/dp_12"
+                        android:background="@drawable/cell_border_left"/>
+
+                    <TextView
+                        android:id="@+id/tvDistrictValue"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Warangal"
+                        android:textColor="@color/black"
+
+                        android:paddingVertical="@dimen/dp_12"
+                        android:paddingStart="@dimen/dp_12"
+                        android:background="@drawable/cell_border_right"/>
+                </LinearLayout>
+
+                <!-- Fourth Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+
+                        android:paddingVertical="@dimen/dp_12"
+                        android:paddingStart="@dimen/dp_12"
+                        android:background="@drawable/cell_border_left"/>
+
+                    <TextView
+                        android:id="@+id/tvStateValue"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Telangana"
+                        android:textColor="@color/black"
+
+                        android:paddingVertical="@dimen/dp_12"
+                        android:paddingStart="@dimen/dp_12"
+                        android:background="@drawable/cell_border_right"/>
+                </LinearLayout>
+
+                <!-- Fifth Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvExperienceTitle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Pincode"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+
+                        android:paddingVertical="@dimen/dp_12"
+                        android:paddingStart="@dimen/dp_12"
+                        android:background="@drawable/cell_border_bottom_left"/>
+
+                    <TextView
+                        android:id="@+id/tvPincodeValue"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="3 Years"
+                        android:textColor="@color/black"
+
+                        android:paddingVertical="@dimen/dp_12"
+                        android:paddingStart="@dimen/dp_12"
+                        android:background="@drawable/cell_border_bottom_right"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ltClientDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_6"
+                android:text="Client Details"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ltDetails" />
+
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/ltClientDetailsMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvDescription">
+                app:layout_constraintTop_toBottomOf="@id/ltClientDetails"
+                app:layout_constraintBottom_toBottomOf="parent">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -160,14 +351,29 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp_6">
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/profilePicCV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="@dimen/dp_45"
+                        android:layout_marginVertical="@dimen/dp_6"
+                        android:layout_marginStart="@dimen/dp_6"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+
                     <ImageView
                         android:id="@+id/ivUserPic"
                         android:layout_width="@dimen/dp_80"
                         android:layout_height="@dimen/dp_80"
-                        android:src="@drawable/iv_user_profile"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_shop_owner"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:id="@+id/tvUserName"
@@ -179,7 +385,7 @@
                         android:textColor="#000000"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@id/ivUserPic"
+                        app:layout_constraintStart_toEndOf="@id/profilePicCV"
                         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -192,7 +398,7 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toStartOf="@id/btCallNow"
-                        app:layout_constraintStart_toEndOf="@id/ivUserPic"
+                        app:layout_constraintStart_toEndOf="@id/profilePicCV"
                         app:layout_constraintTop_toBottomOf="@id/tvUserName">
 
                         <ImageView
@@ -220,7 +426,7 @@
                         android:layout_marginTop="@dimen/dp_4"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        app:layout_constraintStart_toEndOf="@id/ivUserPic"
+                        app:layout_constraintStart_toEndOf="@id/profilePicCV"
                         app:layout_constraintTop_toBottomOf="@id/ltPlace">
 
                         <ImageView
@@ -261,9 +467,84 @@
 
             </androidx.cardview.widget.CardView>
 
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/btDeletePost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_12"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/button_two_login"
+                android:paddingVertical="@dimen/dp_12"
+                android:text="Delete Post"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/ltDetails"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
+
+<!--<LinearLayout-->
+<!--android:id="@+id/ltAreaName"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_marginStart="@dimen/dp_12"-->
+<!--android:gravity="center_vertical"-->
+<!--android:orientation="horizontal"-->
+<!--app:layout_constraintStart_toStartOf="@id/tvWorkName"-->
+<!--app:layout_constraintTop_toBottomOf="@id/tvWorkName">-->
+
+<!--<ImageView-->
+<!--    android:layout_width="@dimen/dp_16"-->
+<!--    android:layout_height="@dimen/dp_16"-->
+<!--    android:src="@drawable/iv_area" />-->
+
+<!--<TextView-->
+<!--    android:id="@+id/tvAreaeName"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginStart="@dimen/dp_6"-->
+<!--    android:text="Place Name, City"-->
+<!--    android:textColor="#000000"-->
+<!--    android:textSize="14sp" />-->
+
+<!--</LinearLayout>-->
+<!--<LinearLayout-->
+<!--android:visibility="gone"-->
+<!--android:id="@+id/ltPlaceName"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_marginStart="@dimen/dp_12"-->
+<!--android:gravity="center_vertical"-->
+<!--android:orientation="horizontal"-->
+<!--app:layout_constraintStart_toStartOf="@id/tvWorkName"-->
+<!--app:layout_constraintTop_toBottomOf="@id/ltAreaName">-->
+
+<!--<ImageView-->
+<!--    android:layout_width="@dimen/dp_16"-->
+<!--    android:layout_height="@dimen/dp_16"-->
+<!--    android:src="@drawable/place_location" />-->
+
+<!--<TextView-->
+<!--    android:id="@+id/tvPlaceName"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginStart="@dimen/dp_6"-->
+<!--    android:text="Place Name, City"-->
+<!--    android:textColor="#000000"-->
+<!--    android:textSize="14sp" />-->
+
+<!--</LinearLayout>-->
+

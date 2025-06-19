@@ -39,13 +39,17 @@ object CallIntent {
     }
 
     fun gotoWorkerHomeActivity(context: Context, killMe: Boolean, activity: Activity) {
-        val intent = Intent(context, WorkerHomeActivity::class.java)
+        val intent = Intent(context, WorkerHomeActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
         context.startActivity(intent)
         if (killMe) activity.finish()
     }
 
     fun gotoVolunteerHomeActivity(context: Context, killMe: Boolean, activity: Activity) {
-        val intent = Intent(context, VolunteerHomeActivity::class.java)
+        val intent = Intent(context, VolunteerHomeActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
         context.startActivity(intent)
         if (killMe) activity.finish()
     }

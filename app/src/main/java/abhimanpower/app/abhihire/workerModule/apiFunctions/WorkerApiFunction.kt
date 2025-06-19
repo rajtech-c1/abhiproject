@@ -14,7 +14,8 @@ class WorkerApiFunction(
     workerViewModel: WorkerViewModel,
     private val onGetAvailableWorksResponse: (getAvailableWorksResponse: GetAvailableWorksResponse) -> Unit = {},
     private val onUpdateWorkerProfile: (addWorker: AddWorkerResponse) -> Unit = {},
-    ) {
+    private val onPostDeleted: (response: GetAvailableWorksResponse) -> Unit = {},
+) {
 
     private var mContext: Context
     private var mLifecycleOwner: LifecycleOwner
@@ -56,6 +57,16 @@ class WorkerApiFunction(
 //            } else {
 //                UtilFunctions.showToast(mContext, "Server Error")
 //            }
+        }
+    }
+
+    fun deletePost(postId: Int) {
+        mvolunteerViewModule.resetDeletePostResponse()
+        mvolunteerViewModule.deletePost(postId)
+
+        mvolunteerViewModule.getDeletePostResponse().observe(mLifecycleOwner)
+        {
+            onPostDeleted.invoke(it)
         }
     }
 

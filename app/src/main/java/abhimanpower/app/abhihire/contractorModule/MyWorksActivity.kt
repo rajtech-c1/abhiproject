@@ -2,12 +2,14 @@ package abhimanpower.app.abhihire.contractorModule
 
 import abhimanpower.app.abhihire.contractorModule.uiFunctions.MyWorksUI
 import abhimanpower.app.abhihire.databinding.ActivityMyWorksBinding
+import abhimanpower.app.abhihire.loginModule.modalClass.LoginCredentials
 import abhimanpower.app.abhihire.workerModule.adapter.AvailableWorksAdapter
 import abhimanpower.app.abhihire.workerModule.apiFunctions.WorkerApiFunction
 import abhimanpower.app.abhihire.workerModule.apiFunctions.WorkerViewModel
 import abhimanpower.app.abhihire.workerModule.modalClass.GetAvailableWorksResponse
 import abhimanpower.app.abhihire.workerModule.modalClass.SelectedData
 import abhimanpower.app.abhihire.workerModule.modalClass.WorkData
+import abhimanpower.app.abhihire.zCommonFunctions.AppData
 import abhimanpower.app.abhihire.zCommonFunctions.CallIntent
 import abhimanpower.app.abhihire.zCommonFunctions.UtilFunctions
 import android.os.Bundle
@@ -38,8 +40,15 @@ class MyWorksActivity : AppCompatActivity() {
         workerViewModel = ViewModelProvider(this)[WorkerViewModel::class.java]
 
 
-        initView()
+//        initView()
         setOnClickListeners()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+
+        initView()
     }
 
     private fun setOnClickListeners() {
@@ -63,6 +72,8 @@ class MyWorksActivity : AppCompatActivity() {
 
         myWorksUI = MyWorksUI(this, binding)
 
+        LoginCredentials.selectedRole=AppData.getUserRole(this)
+
         getAvailableWorks()
     }
 
@@ -80,6 +91,13 @@ class MyWorksActivity : AppCompatActivity() {
                     initAvailableWorks(response.worksList)
                 } else
                     UtilFunctions.showToast(this, "No Works Are Available")
+            }
+            404 ->{
+
+                myWorksUI.showPB(false)
+                myWorksUI.hideList()
+                UtilFunctions.showToast(this, "No Works Posted")
+
             }
 
             else -> {

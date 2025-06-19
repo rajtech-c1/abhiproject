@@ -24,7 +24,8 @@ interface ApiInterface {
     @FormUrlEncoded
     @POST("volunteerLogin.php")
     suspend fun validateLogin(
-        @Field("MobileNo") mobileNo: String
+        @Field("UserName") userName: String,
+        @Field("Password") password: String
     ): LoginResponse
 
     @FormUrlEncoded
@@ -100,6 +101,7 @@ interface ApiInterface {
         @Part("Area") area: RequestBody,
         @Part("Pincode") pincode: RequestBody,
         @Part("State") state: RequestBody,
+        @Part("District") district: RequestBody,
         @Part("WorkCategory") workCategory: RequestBody,
         @Part("Experience") experience: RequestBody,
         @Part("VerificationStatus") verificationStatus: RequestBody,
@@ -131,6 +133,18 @@ interface ApiInterface {
 
     @GET("Get_AvailableWorks.php")
     suspend fun getAvailableWorks(): GetAvailableWorksResponse
+
+    @FormUrlEncoded
+    @POST("Get_PostedWorks.php")
+    suspend fun getPostedWorks(
+        @Field("UserId") userId: String
+    ): GetAvailableWorksResponse
+
+    @FormUrlEncoded
+    @POST("Update_Post.php")
+    suspend fun deletePost(
+        @Field("PostId") postId: Int
+    ): GetAvailableWorksResponse
 
     @FormUrlEncoded
     @POST("Get_AvailableWorkers.php")

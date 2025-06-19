@@ -56,13 +56,14 @@ class AddWorkActivity : AppCompatActivity() {
 
     private fun onAddWorkResponse(response: AddWorkDataResponse) {
 
-        when(response.status)
-        {
+        when (response.status) {
             200 -> {
-                UtilFunctions.showToast(this,"Work Added Successfully")
+                finish()
+                UtilFunctions.showToast(this, "Work Added Successfully")
             }
+
             else -> {
-                UtilFunctions.showToast(this,"Server Error")
+                UtilFunctions.showToast(this, "Server Error")
             }
         }
     }

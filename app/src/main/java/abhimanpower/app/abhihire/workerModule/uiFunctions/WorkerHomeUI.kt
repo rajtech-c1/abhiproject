@@ -42,6 +42,7 @@ class WorkerHomeUI(
         setVerificationStatus()
         setAnimation()
 
+        setUserData()
     }
 
     private fun setUserData() {
@@ -50,7 +51,7 @@ class WorkerHomeUI(
 
             mBinding.tvUserName.text = workerData.name
 
-            Log.e("Test","Contractor Image : ${workerData.image}")
+            Log.e("Test","Worker Image : ${workerData.image}")
 
             if (workerData.image.isNotEmpty()) {
                 mBinding.ivProfile.load(workerData.image) {
@@ -63,7 +64,7 @@ class WorkerHomeUI(
     }
 
 
-    fun setVerificationStatus()
+    private fun setVerificationStatus()
     {
         val workerData = LoginCredentials.workerAccountData
 
@@ -130,12 +131,8 @@ class WorkerHomeUI(
     }
 
     private fun showSubscribeBtmSheet() {
-        val dialog = BottomSheetDialog(mContext).apply {
-            // Apply blur effect to the BOTTOMSHEET'S window (not activity)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                window?.setBackgroundBlurRadius(100) // 20 is enough (0-100)
-            }
-        }
+        Log.e("Test","Worker Subscription Sheet")
+        val dialog = BottomSheetDialog(mContext)
 
         val binding: BtmSubscriptionSheetBinding = DataBindingUtil.inflate(
             mLayoutInflater,

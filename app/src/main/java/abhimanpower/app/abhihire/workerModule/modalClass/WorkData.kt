@@ -18,24 +18,26 @@ data class WorkData(
     val description: String = "",
     @SerializedName("WorkCategory")
     val workCategory: String = "0",
+    @SerializedName("Pincode")
+    val pincode: String = "",
+    @SerializedName("DatePosted")
+    val datePosted: String = "",
+
     @SerializedName("UserId")
     val userId: String = "0",
     @SerializedName("UserName")
     val userName: String = "0",
     @SerializedName("UserImage")
     val userImage: String = "0",
-    @SerializedName("UserContact")
+    @SerializedName("MobileNo")
     val userContact: String = "0",
-    @SerializedName("Pincode")
-    val pincode: String = "",
-    @SerializedName("DatePosted")
-    val datePosted: String = "",
-
-    @SerializedName("PlanId")
-    val planId: String = "",
-    @SerializedName("PlanName")
-    val planName: String = "",
-    @SerializedName("Price")
-    val price: String = ""
+    @SerializedName("UserDistrict")
+    val userDistrict: String = "0",
+    @SerializedName("UserState")
+    val userState: String = "0",
+    @SerializedName("Image")
+    val image: String = "0",
+    @SerializedName("UserType")
+    val userType: String = "0",
 
     )

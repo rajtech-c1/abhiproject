@@ -55,13 +55,16 @@ class EditWorkerProfileActivity : AppCompatActivity() {
         setupClickListeners()
     }
 
-    private fun setImage()
-    {
-        Log.e("Test","Image Loading : ${LoginCredentials.workerAccountData.image}")
-        binding.profilePic.load(LoginCredentials.workerAccountData.image) {
-            placeholder(R.drawable.ic_add_photo) // Make sure you have this drawable
-            crossfade(true)
-            crossfade(1000)
+    private fun setImage() {
+        if (LoginCredentials.workerAccountData.image.isNotEmpty()) {
+            Log.e("Test", "Image Loading : ${LoginCredentials.workerAccountData.image}")
+            binding.profilePic.load(LoginCredentials.workerAccountData.image) {
+                placeholder(R.drawable.ic_add_photo) // Make sure you have this drawable
+                crossfade(true)
+                crossfade(1000)
+            }
+        } else {
+            binding.profilePic.setImageResource(R.drawable.ic_shop_owner)
         }
     }
 
@@ -83,7 +86,6 @@ class EditWorkerProfileActivity : AppCompatActivity() {
         binding.etStreet.setText(workerAccountData.street)
         binding.etArea.setText(workerAccountData.area)
         binding.etPincode.setText(workerAccountData.pincode)
-        binding.etState.setText(workerAccountData.state)
 
 
         binding.etExperience.setText(workerAccountData.experience)

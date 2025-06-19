@@ -5,17 +5,29 @@ import abhimanpower.app.abhihire.workerModule.modalClass.State
 
 object AreaData {
 
-    fun getDistrict(districtId:Int): String
-    {
-        val districtValue: String
-        val district = telanganaDistricts.find { it.districtId == districtId }
-        districtValue = district!!.districtName
+    fun getDistrict(districtId: Int, stateId: Int): String {
+        var districtState = "D,S"
+        when (stateId) {
+            1 -> {
+                val district = telanganaDistricts.find { it.districtId == districtId }
 
-        return districtValue
+                if (district != null)
+                    districtState = district.districtName
+            }
+
+            2 -> {
+                val district = andhraPradeshDistricts.find { it.districtId == districtId }
+
+                if (district != null)
+                    districtState = district.districtName
+            }
+
+        }
+
+        return districtState
     }
 
-    fun getState(stateId:Int): String
-    {
+    fun getState(stateId: Int): String {
         val state = states[stateId].stateName
         return state
     }
@@ -27,14 +39,16 @@ object AreaData {
                 val district = telanganaDistricts.find { it.districtId == districtId }
                 val state = states[0]
 
-                districtState = district!!.districtName+"," + state.stateName
+                if (district != null)
+                    districtState = district.districtName + "," + state.stateName
             }
 
             2 -> {
                 val district = andhraPradeshDistricts.find { it.districtId == districtId }
                 val state = states[1]
 
-                districtState = district!!.districtName +","+ state.stateName
+                if (district != null)
+                    districtState = district.districtName + "," + state.stateName
             }
 
         }

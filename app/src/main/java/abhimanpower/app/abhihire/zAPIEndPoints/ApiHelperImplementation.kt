@@ -24,7 +24,7 @@ class ApiHelperImplementation @Inject constructor(private val apiService: ApiInt
 
     override suspend fun validateLogin(): LoginResponse {
         return apiService.validateLogin(
-            LoginCredentials.userName
+            LoginCredentials.userName, LoginCredentials.password
         )
     }
 
@@ -118,6 +118,7 @@ class ApiHelperImplementation @Inject constructor(private val apiService: ApiInt
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.area),
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.pincode),
             RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.state.toString()),
+            RequestBody.create("text/plain".toMediaTypeOrNull(), workerData.district.toString()),
             RequestBody.create(
                 "text/plain".toMediaTypeOrNull(),
                 workerData.workcategory.toString()
@@ -173,7 +174,15 @@ class ApiHelperImplementation @Inject constructor(private val apiService: ApiInt
     }
 
     override suspend fun getAvailableWorks(): GetAvailableWorksResponse {
+
+        if (LoginCredentials.selectedRole == 3 || LoginCredentials.selectedRole == 4)
+            return apiService.getPostedWorks(LoginCredentials.contractorAccountData.sno)
+
         return apiService.getAvailableWorks()
+    }
+
+    override suspend fun deletePost(postId: Int): GetAvailableWorksResponse {
+        return apiService.deletePost(postId)
     }
 
     override suspend fun getAvailableWorkers(workCategory: Int): GetAvailableWorkersResponse {

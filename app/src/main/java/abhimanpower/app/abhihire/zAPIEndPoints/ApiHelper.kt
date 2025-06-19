@@ -36,6 +36,10 @@ interface ApiHelper {
 
     suspend fun getAvailableWorks(): GetAvailableWorksResponse
 
+    suspend fun deletePost(postId:Int): GetAvailableWorksResponse
+
+
+
     suspend fun getAvailableWorkers(workCategory: Int): GetAvailableWorkersResponse
 
     suspend fun addWorkData(workData: WorkData): AddWorkDataResponse

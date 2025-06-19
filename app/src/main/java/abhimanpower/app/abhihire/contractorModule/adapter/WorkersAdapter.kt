@@ -7,6 +7,7 @@ import abhimanpower.app.abhihire.zCommonFunctions.AppData
 import abhimanpower.app.abhihire.zCommonFunctions.AreaData
 import abhimanpower.app.abhihire.zCommonFunctions.UtilFunctions
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,8 @@ class WorkersAdapter(
     override fun onBindViewHolder(holder: WorkersAdapterViewHolder, position: Int) {
 
         val workerData = availableWorkers[position]
+
+        Log.e("Test","Item[$position] - $workerData")
 
         holder.binding.tvWorkName.text = workerData.name
         holder.binding.tvPlaceName.text =

@@ -65,6 +65,7 @@
                 app:layout_constraintTop_toTopOf="@+id/ivVolunteer" />
 
             <RadioButton
+                android:id="@+id/radioButtonVolunteer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/tvVolunteer"
@@ -116,6 +117,7 @@
                 app:layout_constraintTop_toTopOf="@+id/ivWorker" />
 
             <RadioButton
+                android:id="@+id/radioButtonWorker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/tvWorker"
@@ -167,6 +169,7 @@
                 app:layout_constraintTop_toTopOf="@+id/ivContractor" />
 
             <RadioButton
+                android:id="@+id/radioButtonContractor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/tvContractor"
@@ -218,6 +221,7 @@
                 app:layout_constraintTop_toTopOf="@+id/ivSingleUser" />
 
             <RadioButton
+                android:id="@+id/radioButtonSingleUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/tvSingleUser"

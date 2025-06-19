@@ -87,6 +87,15 @@ class LoginUI(
 
         mBinding.tvNoAccount.visibility = View.GONE
         mBinding.btRegister.visibility = View.GONE
+
+        mBinding.tvUserName.visibility=View.VISIBLE
+        mBinding.etUserName.visibility=View.VISIBLE
+
+        mBinding.tvPassword.visibility=View.VISIBLE
+        mBinding.etPassword.visibility=View.VISIBLE
+
+        mBinding.tvMobileNum.visibility=View.GONE
+        mBinding.etMobileNum.visibility=View.GONE
     }
 
     private fun setWorkerUI() {
@@ -97,7 +106,7 @@ class LoginUI(
     }
 
     private fun setContractorUI() {
-        mBinding.tvLoginTitle.text = "Contractor Login"
+        mBinding.tvLoginTitle.text = "Contractor or General User\nLogin"
 
         mBinding.tvNoAccount.visibility = View.VISIBLE
         mBinding.btRegister.visibility = View.VISIBLE

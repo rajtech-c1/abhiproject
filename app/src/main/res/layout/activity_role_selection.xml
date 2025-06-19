@@ -3,46 +3,277 @@
 <layout>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainLt"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".loginModule.RoleSelectionActivity">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLine1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.12" />
+
+        <ImageView
+            android:id="@+id/btTranslate"
+            android:layout_width="@dimen/dp_26"
+            android:layout_height="@dimen/dp_26"
+            android:src="@drawable/languages"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginEnd="@dimen/dp_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvTitleRoll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_24"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginHorizontal="@dimen/dp_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideLine1" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/rollVolunteer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="@dimen/dp_24"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="32dp"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="@dimen/sp_16"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleRoll">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rollVolunteerLt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_6">
+
+                <ImageView
+                    android:id="@+id/ivVolunteer"
+                    android:layout_width="@dimen/dp_72"
+                    android:layout_height="@dimen/dp_72"
+                    android:src="@drawable/outline_account_box_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvVolunteer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Continue as Volunteer"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/ivVolunteer"
+                    app:layout_constraintStart_toEndOf="@+id/ivVolunteer"
+                    app:layout_constraintTop_toTopOf="@+id/ivVolunteer" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonVolunteer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvVolunteer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvVolunteer" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/rollWorker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="12dp"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="@dimen/sp_16"
+            app:layout_constraintTop_toBottomOf="@+id/rollVolunteer">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rollWorkerLt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_6">
+
+                <ImageView
+                    android:id="@+id/ivWorker"
+                    android:layout_width="@dimen/dp_72"
+                    android:layout_height="@dimen/dp_72"
+                    android:src="@drawable/outline_account_box_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvWorker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Continue as Worker"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/ivWorker"
+                    app:layout_constraintStart_toEndOf="@+id/ivWorker"
+                    app:layout_constraintTop_toTopOf="@+id/ivWorker" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonWorker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvWorker"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvWorker" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/rollContractor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="12dp"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="@dimen/sp_16"
+            app:layout_constraintTop_toBottomOf="@+id/rollWorker">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rollContractorLt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_6">
+
+                <ImageView
+                    android:id="@+id/ivContractor"
+                    android:layout_width="@dimen/dp_72"
+                    android:layout_height="@dimen/dp_72"
+                    android:src="@drawable/outline_account_box_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvContractor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Continue as Contractor \nor General User"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivContractor"
+                    app:layout_constraintStart_toEndOf="@+id/ivContractor"
+                    app:layout_constraintTop_toTopOf="@+id/ivContractor" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonContractor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvContractor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvContractor" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:visibility="gone"
+            android:id="@+id/rollSingleUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="12dp"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="@dimen/sp_16"
+            app:layout_constraintTop_toBottomOf="@+id/rollContractor">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rollSingleUserLt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_6">
+
+                <ImageView
+                    android:id="@+id/ivSingleUser"
+                    android:layout_width="@dimen/dp_72"
+                    android:layout_height="@dimen/dp_72"
+                    android:src="@drawable/outline_account_box_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvSingleUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Continue as General User"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivSingleUser"
+                    app:layout_constraintStart_toEndOf="@+id/ivSingleUser"
+                    app:layout_constraintTop_toTopOf="@+id/ivSingleUser" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonSingleUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvSingleUser"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvSingleUser" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/btSendOTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_12"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/button_two_login"
+            android:paddingVertical="@dimen/dp_12"
+            android:text="Next"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintStart_toStartOf="parent" />
 
 
-            <Button
-                android:id="@+id/btVolunteerLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Login as Volunteer" />
-
-
-            <Button
-                android:id="@+id/btWorkerLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Login as Worker" />
-
-            <Button
-                android:id="@+id/btContractorLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Login as Contractor" />
-
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

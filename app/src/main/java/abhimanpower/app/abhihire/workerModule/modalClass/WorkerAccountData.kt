@@ -39,7 +39,7 @@ data class WorkerAccountData(
     val experience: String = "",
 
     @SerializedName("VerificationStatus")
-    val verificationStatus: String = "",
+    val verificationStatus: Int = 0,
 
     @SerializedName("SubscriptionEndingDate")
     val subscriptionEndingDate: String = "",

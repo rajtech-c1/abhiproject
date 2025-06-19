@@ -1,6 +1,5 @@
 package abhimanpower.app.abhihire.loginModule
 
-import abhimanpower.app.abhihire.contractorModule.ContractorHomeActivity
 import abhimanpower.app.abhihire.contractorModule.RegisterContractorActivity
 import abhimanpower.app.abhihire.databinding.ActivityVolunteerLoginBinding
 import abhimanpower.app.abhihire.loginModule.apiFunctions.LoginViewModel
@@ -25,7 +24,6 @@ class VolunteerLoginActivity : AppCompatActivity() {
 
     private lateinit var loginUI: LoginUI
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityVolunteerLoginBinding.inflate(layoutInflater)
@@ -39,28 +37,13 @@ class VolunteerLoginActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        loginUI = LoginUI(this, binding,::onOTPVerified)
+        loginUI = LoginUI(this, binding, ::onOTPVerified)
     }
 
     private fun onClickListeners() {
 
         binding.btSendOTP.setOnClickListener {
-
-            val mobileNo = binding.etMobileNum.text.toString()
-            val isTermsAccepted = binding.termsCheckBox.isChecked
-
-            if (mobileNo.length != 10) {
-                loginUI.showError(true, "Enter Valid MobileNo")
-//                UtilFunctions.showToast(this, "Enter Valid MobileNo")
-                return@setOnClickListener
-            }
-
-            if (!isTermsAccepted) {
-                UtilFunctions.showToast(this, "Accept T&C to continue")
-                return@setOnClickListener
-            }
-
-            checkUserRoleandLogin(mobileNo)
+            checkLoginFields()
         }
 
         binding.btLogin.setOnClickListener {
@@ -80,35 +63,79 @@ class VolunteerLoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun onOTPVerified(isOTPCorrect: Boolean)
-    {
-        gotoHomeScreen()
-    }
-
-    private fun gotoHomeScreen() {
+    fun checkLoginFields() {
         when (LoginCredentials.selectedRole) {
-            1 -> {
-                saveToSP(1, LoginCredentials.workerAccountData.mobileNo)
-                CallIntent.gotoWorkerHomeActivity(this, true, this)
-            }
-
             2 -> {
-                saveToSP(2, LoginCredentials.volunteerAccountData.mobileNo)
-                CallIntent.gotoVolunteerHomeActivity(this, true, this)
+                val userName = binding.etUserName.text.toString()
+                val password = binding.etPassword.text.toString()
+                val isTermsAccepted = binding.termsCheckBox.isChecked
+
+
+                if (userName.isEmpty()) {
+                    UtilFunctions.showToast(this, "Enter UserName")
+                    return
+                }
+
+                if (password.isEmpty()) {
+                    UtilFunctions.showToast(this, "Enter Password")
+                    return
+                }
+
+                if (!isTermsAccepted) {
+                    UtilFunctions.showToast(this, "Accept T&C to continue")
+                    return
+                }
+
+                validateVolunteerMobileNo(userName, password)
             }
 
-            3 -> {
-                saveToSP(3, LoginCredentials.contractorAccountData.mobileNo)
-                CallIntent.gotoNextActivity(this, true, this, ContractorHomeActivity())
+            else -> {
+                val mobileNo = binding.etMobileNum.text.toString()
+                val isTermsAccepted = binding.termsCheckBox.isChecked
+
+                if (mobileNo.length != 10) {
+                    loginUI.showError(true, "Enter Valid MobileNo")
+//                UtilFunctions.showToast(this, "Enter Valid MobileNo")
+                    return
+                }
+
+                if (!isTermsAccepted) {
+                    UtilFunctions.showToast(this, "Accept T&C to continue")
+                    return
+                }
+
+                checkUserRoleandLogin(mobileNo)
             }
         }
     }
 
-    private fun saveToSP(userRole: Int, mobileNo: String) {
-        AppData.putUserLoginStatus(this, true)
-        AppData.putUserRole(this, userRole)
-        AppData.putUserMobileNo(this, mobileNo)
+    private fun onOTPVerified(isOTPCorrect: Boolean) {
+        gotoHomeScreen()
     }
+
+
+    private fun gotoHomeScreen() {
+        when (LoginCredentials.selectedRole) {
+            1 -> {
+//                saveToSP(1, LoginCredentials.workerAccountData.mobileNo)
+//                CallIntent.gotoWorkerHomeActivity(this, true, this)
+            }
+
+            2 -> {
+//                saveToSP(2, LoginCredentials.volunteerAccountData.mobileNo)
+//                CallIntent.gotoVolunteerHomeActivity(this, true, this)
+            }
+
+            3 -> {
+//                saveToSP(3, LoginCredentials.contractorAccountData.mobileNo)
+//                CallIntent.gotoNextActivity(this, true, this, ContractorHomeActivity())
+            }
+        }
+        CallIntent.gotoNextActivity(this, true, this, MPinActivity())
+
+    }
+
+
 
     private fun checkUserRoleandRegister() {
         when (LoginCredentials.selectedRole) {
@@ -138,7 +165,7 @@ class VolunteerLoginActivity : AppCompatActivity() {
             }
 
             2 -> {
-                validateVolunteerMobileNo(mobileNo)
+//                validateVolunteerMobileNo(mobileNo)
             }
 
             3 -> {
@@ -151,8 +178,9 @@ class VolunteerLoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateVolunteerMobileNo(mobileNo: String) {
+    private fun validateVolunteerMobileNo(mobileNo: String, password: String) {
         LoginCredentials.userName = mobileNo
+        LoginCredentials.password = password
 
         loginUI.showPB(true)
         loginViewModel.resetLoginResponse()
@@ -166,8 +194,13 @@ class VolunteerLoginActivity : AppCompatActivity() {
             when (it.status) {
                 200 -> {
                     LoginCredentials.volunteerAccountData = it.accountData
-                    UtilFunctions.showToast(this, "Login Successfull")
+//                    UtilFunctions.showToast(this, "Login Successfull")
                     sendOTP(LoginCredentials.volunteerAccountData.mobileNo)
+                }
+
+                201 ->{
+                    UtilFunctions.showToast(this, "Invalid Credentails")
+
                 }
 
                 else -> {
@@ -188,8 +221,8 @@ class VolunteerLoginActivity : AppCompatActivity() {
             when (it.status) {
                 200 -> {
                     LoginCredentials.workerAccountData = it.accountData
-                    LoginCredentials.planDetails=it.plan
-                    UtilFunctions.showToast(this, "Login Successfull")
+                    LoginCredentials.planDetails = it.plan
+//                    UtilFunctions.showToast(this, "Login Successfull")
                     sendOTP(LoginCredentials.workerAccountData.mobileNo)
                 }
 
@@ -210,8 +243,8 @@ class VolunteerLoginActivity : AppCompatActivity() {
             when (it.status) {
                 200 -> {
                     LoginCredentials.contractorAccountData = it.accountData
-                    LoginCredentials.planDetails=it.plan
-                    UtilFunctions.showToast(this, "Login Successfull")
+                    LoginCredentials.planDetails = it.plan
+//                    UtilFunctions.showToast(this, "Login Successfull")
                     sendOTP(LoginCredentials.contractorAccountData.mobileNo)
 
                 }
@@ -224,8 +257,9 @@ class VolunteerLoginActivity : AppCompatActivity() {
         }
     }
 
-    fun sendOTP(number:String)
-    {
+    fun sendOTP(number: String) {
+
+        binding.tvPhoneNum.text=number
         //TODO Send OTP Logic
 
         loginUI.setOTPValue("1234")

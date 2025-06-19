@@ -48,6 +48,16 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
+                    android:id="@+id/btTranslate"
+                    android:layout_width="@dimen/dp_26"
+                    android:layout_height="@dimen/dp_26"
+                    android:src="@drawable/languages"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btLogout"/>
+
+                <ImageView
                     android:id="@+id/btLogout"
                     android:layout_width="@dimen/dp_28"
                     android:layout_height="@dimen/dp_28"
@@ -144,7 +154,7 @@
                             android:id="@+id/tvFullNameTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Shop Name"
+                            android:text="Shop Name or Full Name"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 

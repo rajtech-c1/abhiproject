@@ -41,4 +41,16 @@ class WorkerRepository @Inject constructor(
         return updateWorkerResponse
     }
 
+    private var deletePostResponse = GetAvailableWorksResponse()
+
+    suspend fun deletePostResponse(postId:Int): GetAvailableWorksResponse {
+        try {
+            withContext(Dispatchers.IO) {
+                deletePostResponse = apiHelper.deletePost(postId)
+            }
+        } catch (_: Exception) {
+        }
+        return deletePostResponse
+    }
+
 }

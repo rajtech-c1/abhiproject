@@ -21,6 +21,9 @@
         android:theme="@style/Theme.AbhiHire"
         tools:targetApi="31">
         <activity
+            android:name=".loginModule.MPinActivity"
+            android:exported="false" />
+        <activity
             android:name=".contractorModule.EditContractorProfileActivity"
             android:exported="false" />
         <activity

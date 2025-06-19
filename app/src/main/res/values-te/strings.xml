@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    Role Selection-->
+
+    <string name="main_title">ముందుకు సాగడానికి మీ పాత్రను ఎంచుకోండి</string>
+
+    <!--    Volunteer Home-->
+    <string name="welcome">స్వాగతం</string>
+
+
+</resources>

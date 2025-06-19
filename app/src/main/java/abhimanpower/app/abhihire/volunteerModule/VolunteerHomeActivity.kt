@@ -2,6 +2,7 @@ package abhimanpower.app.abhihire.volunteerModule
 
 import abhimanpower.app.abhihire.databinding.ActivityVolunteerHomeBinding
 import abhimanpower.app.abhihire.loginModule.LogoutDialog
+import abhimanpower.app.abhihire.loginModule.modalClass.LoginCredentials
 import abhimanpower.app.abhihire.volunteerModule.adapters.DayInfoAdapter
 import abhimanpower.app.abhihire.volunteerModule.apiFunctions.VolunteerApiFunctions
 import abhimanpower.app.abhihire.volunteerModule.apiFunctions.VolunteerViewModule
@@ -40,12 +41,18 @@ class VolunteerHomeActivity : AppCompatActivity() {
 
 
         setData()
-        initView()
+//        initView()
         onClickListeners()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        initView()
+    }
+
     private fun setData() {
-        binding.tvVolunteerName.text = VolunteerData.volunteerName
+        binding.tvVolunteerName.text = LoginCredentials.volunteerAccountData.name
     }
 
     private fun initView() {
@@ -83,6 +90,10 @@ class VolunteerHomeActivity : AppCompatActivity() {
         binding.btLogout.setOnClickListener {
             logoutDialog.openLogoutDialog()
         }
+
+        binding.btTranslate.setOnClickListener {
+            UtilFunctions.showLanguageSelectionDialog(this, this)
+        }
     }
 
     private fun fetchOverallVolunteerStats() {
@@ -91,13 +102,13 @@ class VolunteerHomeActivity : AppCompatActivity() {
 
     private fun onGetOverAllStatsResponseFetched(response: GetOverallStatsResponse) {
         if (response.status == 200) {
-            binding.tvTotalVolunteers.text = response.workers!!.totalCount.toString()
+            binding.tvTotalWorkers.text = response.workers!!.totalCount.toString()
             binding.tvWorkerToday.text = response.workers.todayCount.toString()
             binding.tvWorkerWeek.text = response.workers.weekCount.toString()
 
-            binding.tvTotalContractors.text=response.contractors!!.totalCount.toString()
-            binding.tvContractorsWeek.text= response.contractors.weekCount.toString()
-            binding.tvContractorTodayCount.text=response.contractors.todayCount.toString()
+            binding.tvTotalContractors.text = response.contractors!!.totalCount.toString()
+            binding.tvContractorsWeek.text = response.contractors.weekCount.toString()
+            binding.tvContractorTodayCount.text = response.contractors.todayCount.toString()
         } else {
             UtilFunctions.showToast(this, "Server Error")
         }

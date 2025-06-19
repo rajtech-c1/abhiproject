@@ -11,6 +11,7 @@ import abhimanpower.app.abhihire.databinding.BtmSheetWorkerDetailsBinding
 import abhimanpower.app.abhihire.loginModule.LogoutDialog
 import abhimanpower.app.abhihire.workerModule.modalClass.WorkerAccountData
 import abhimanpower.app.abhihire.zCommonFunctions.AppData
+import abhimanpower.app.abhihire.zCommonFunctions.AreaData
 import abhimanpower.app.abhihire.zCommonFunctions.CallIntent
 import abhimanpower.app.abhihire.zCommonFunctions.UtilFunctions
 import android.os.Build
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -81,9 +83,9 @@ class ContractorHomeActivity : AppCompatActivity() {
             initAvailableWorkers(orgWorkersList)
         }
 
-        binding.btAddWork.setOnClickListener {
-            CallIntent.gotoMyWorksActivity(this, false, this)
-        }
+//        binding.btAddWork.setOnClickListener {
+//            CallIntent.gotoMyWorksActivity(this, false, this)
+//        }
 
         binding.btLogout.setOnClickListener {
             logoutDialog.openLogoutDialog()
@@ -91,6 +93,14 @@ class ContractorHomeActivity : AppCompatActivity() {
 
         binding.ivProfile.setOnClickListener {
             CallIntent.gotoNextActivity(this, false, this, ContractorProfileActivity())
+        }
+
+        binding.btPostedWorks.setOnClickListener {
+            CallIntent.gotoMyWorksActivity(this, false, this)
+        }
+
+        binding.btPostNewWork.setOnClickListener {
+            CallIntent.gotoAddWorkActivity(this, false, this)
         }
     }
 
@@ -167,7 +177,26 @@ class ContractorHomeActivity : AppCompatActivity() {
             false
         )
 
+        if (workerAccountData.image.isNotEmpty())
+            binding.profilePic.load(workerAccountData.image) {
+                placeholder(R.drawable.ic_add_photo) // Make sure you have this drawable
+                crossfade(true)
+                crossfade(1000)
+            }
+        else
+            binding.profilePic.setImageResource(R.drawable.ic_shop_owner)
+
         binding.workerName.text = workerAccountData.name
+        binding.tvWorkCategory.text =
+            AppData.workCategories[workerAccountData.workCategory.toInt()].categoryName
+
+        binding.tvDistrictValue.text = AreaData.getDistrict(
+            workerAccountData.district.toInt(),
+            workerAccountData.state.toInt()
+        )
+        binding.tvState.text = AreaData.getState(workerAccountData.state.toInt() - 1)
+        binding.tvExperienceValue.text = "${workerAccountData.experience} years"
+
         binding.btCallNow.setOnClickListener {
             UtilFunctions.openDialer(this, workerAccountData.mobileNo)
         }
@@ -175,7 +204,6 @@ class ContractorHomeActivity : AppCompatActivity() {
         dialog.setContentView(binding.root)
         dialog.show()
     }
-
 
     //Search Code
 

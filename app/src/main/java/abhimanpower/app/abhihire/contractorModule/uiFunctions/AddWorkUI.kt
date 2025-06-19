@@ -2,14 +2,15 @@ package abhimanpower.app.abhihire.contractorModule.uiFunctions
 
 import abhimanpower.app.abhihire.contractorModule.modalClass.WorkData
 import abhimanpower.app.abhihire.databinding.ActivityAddWorkBinding
-import abhimanpower.app.abhihire.databinding.ActivityAddWorkerBinding
+import abhimanpower.app.abhihire.loginModule.modalClass.LoginCredentials
 import abhimanpower.app.abhihire.volunteerModule.adapters.WorkCategoryAdapter
 import abhimanpower.app.abhihire.volunteerModule.modalClass.WorkCategory
-import abhimanpower.app.abhihire.volunteerModule.modalClass.WorkerData
 import abhimanpower.app.abhihire.workerModule.adapter.DistrictAdapter
 import abhimanpower.app.abhihire.workerModule.adapter.StateAdapter
 import abhimanpower.app.abhihire.workerModule.modalClass.District
 import abhimanpower.app.abhihire.workerModule.modalClass.State
+import abhimanpower.app.abhihire.zCommonFunctions.AppData
+import abhimanpower.app.abhihire.zCommonFunctions.AppData.workCategories
 import abhimanpower.app.abhihire.zCommonFunctions.AreaData
 import abhimanpower.app.abhihire.zCommonFunctions.UtilFunctions
 import android.content.Context
@@ -20,7 +21,7 @@ import android.widget.AdapterView
 class AddWorkUI(
     context: Context,
     binding: ActivityAddWorkBinding,
-    private val onValuated: (workData : WorkData) -> Unit,
+    private val onValuated: (workData: WorkData) -> Unit,
 ) {
     private val mBinding: ActivityAddWorkBinding
     private val mContext: Context
@@ -70,22 +71,20 @@ class AddWorkUI(
             return
         }
 
-        if (ePincode.length!=6) {
+        if (ePincode.length != 6) {
             UtilFunctions.showToast(mContext, "Enter Valid Pincode")
             return
         }
 
-        if(stateSelected==-1) {
+        if (stateSelected == -1) {
             UtilFunctions.showToast(mContext, "Select State")
             return
         }
 
-        if(districtSelected==-1) {
+        if (districtSelected == -1) {
             UtilFunctions.showToast(mContext, "Select District")
             return
         }
-
-
 
 
         val workerData = WorkData(
@@ -96,7 +95,7 @@ class AddWorkUI(
             stateSelected,
             districtSelected,
             workCategorySelected,
-            2
+            LoginCredentials.contractorAccountData.sno.toInt()
         )
 
 
@@ -111,24 +110,10 @@ class AddWorkUI(
 
         val newItem = WorkCategory(
             0,
-            "Select Month"
+            "Select Work Category"
         )
 
-        val workCategories: List<WorkCategory> = listOf(
-            WorkCategory(1, "Design"),
-            WorkCategory(2, "Development"),
-            WorkCategory(3, "Testing"),
-            WorkCategory(4, "Deployment"),
-            WorkCategory(5, "Documentation"),
-            WorkCategory(6, "Client Meeting"),
-            WorkCategory(7, "Bug Fixing"),
-            WorkCategory(8, "Code Review"),
-            WorkCategory(9, "Research"),
-            WorkCategory(10, "Maintenance")
-        )
-
-
-        val allWorkCategoryList = listOf(newItem) + workCategories
+        val allWorkCategoryList = listOf(newItem) + AppData.workCategories
 
         val adapter = WorkCategoryAdapter(
             mContext,

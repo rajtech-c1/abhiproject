@@ -49,4 +49,20 @@ class WorkerViewModel @Inject constructor(
     fun getUpdateWorkerResponse(): LiveData<AddWorkerResponse> {
         return updateWorkerResponse
     }
+
+    private var deletePostResponse = MutableLiveData<GetAvailableWorksResponse>()
+
+    fun deletePost(postId:Int) {
+        viewModelScope.launch {
+            deletePostResponse.postValue(workerRepository.deletePostResponse(postId))
+        }
+    }
+
+    fun resetDeletePostResponse() {
+        deletePostResponse = MutableLiveData<GetAvailableWorksResponse>()
+    }
+
+    fun getDeletePostResponse(): LiveData<GetAvailableWorksResponse> {
+        return deletePostResponse
+    }
 }
